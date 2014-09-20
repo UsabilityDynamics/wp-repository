@@ -2,7 +2,7 @@
   "name": "usabilitydynamics.com/wp-repository",
   "version": "0.1.0",
   "type": "wordpress-plugin",
-  "homepage": "",
+  "homepage": "https://github.com/UsabilityDynamics/wp-repository",
   "keywords": [],
   "minimum-stability": "dev",
   "repositories": [
@@ -13,13 +13,11 @@
   ],
   "require": {
     "php": ">=5.3",
-    "usabilitydynamics/lib-installer": "master"
+    "usabilitydynamics/lib-installer": "0.1.0"
   },
   "require-dev": {},
   "autoload": {
-    "classmap": [
-      "lib"
-    ]
+    "classmap": []
   },
   "authors": [
     {
@@ -41,23 +39,6 @@
       "role": "Developer"
     }
   ],
-  "config": {},
-  "extra": {
-    "title": {
-      "en_US": ""
-    },
-    "tagline": {
-      "en_US": ""
-    },
-    "description": {
-      "en_US": ""
-    },
-    "image": "",
-    "minimum_core": {},
-    "installer-name": "usabilitydynamics.com/wp-repository",
-    "text_domain": "usabilitydynamics.com/wp-repository",
-    "classmap": "lib/class-repository.php",
-    "bootstrap": ""
-  },
+  "extra": {},
   "license": "GNU"
 }

@@ -1,11 +1,14 @@
 <?php
 /**
- * Plugin Name: Repository
- * Plugin URI: http://twincitiestech.com/plugins/
+ * Plugin Name: Repositories
+ * Plugin URI: http://usabilitydynamics.com/plugins/
  * Description: -
  * Author: Usability Dynamics, Inc.
  * Version: 1.0
  * Author URI: http://usabilitydynamics.com
+ *
+ *
+ * /home/ud/storage/repositories
  *
  */
 
