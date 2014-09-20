@@ -1,7 +1,7 @@
 {
-  "name": "usabilitydynamics.com/repository",
+  "name": "usabilitydynamics.com/wp-repository",
   "version": "0.1.0",
-  "type": "wordpress-module",
+  "type": "wordpress-plugin",
   "homepage": "",
   "keywords": [],
   "minimum-stability": "dev",
@@ -54,8 +54,8 @@
     },
     "image": "",
     "minimum_core": {},
-    "installer-name": "usabilitydynamics.com/repository",
-    "text_domain": "usabilitydynamics.com/repository",
+    "installer-name": "usabilitydynamics.com/wp-repository",
+    "text_domain": "usabilitydynamics.com/wp-repository",
     "classmap": "lib/class-repository.php",
     "bootstrap": ""
   },
