@@ -9,16 +9,18 @@
     {
       "type": "composer",
       "url": "http://repository.usabilitydynamics.com"
+    },
+    {
+      "type":"composer",
+      "url":"http://wpackagist.org"
     }
   ],
   "require": {
     "php": ">=5.3",
-    "usabilitydynamics/lib-installer": "0.1.0"
+    "usabilitydynamics/github-repo-updater": "0.2.2",
+    "usabilitydynamics/lib-settings": "0.2.2"
   },
   "require-dev": {},
-  "autoload": {
-    "classmap": []
-  },
   "authors": [
     {
       "name": "Andy Potanin",

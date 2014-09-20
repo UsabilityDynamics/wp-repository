@@ -1,0 +1,71 @@
+{
+  "ok": true,
+  "packages": {
+    "google/api-php-client": {
+      "master": {
+        "name": "google/api-php-client",
+        "version": "master",
+        "autoload": {
+          "classmap": [
+            "src/Google"
+          ]
+        },
+        "dist": {
+          "url": "https://github.com/google/google-api-php-client/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:google/google-api-php-client.git",
+          "type": "git",
+          "reference": "master"
+        }
+      },
+      "0.6.7": {
+        "name": "google/api-php-client",
+        "version": "0.6.7",
+        "autoload": {
+          "classmap": [
+            "src/Google"
+          ]
+        },
+        "dist": {
+          "url": "https://github.com/google/google-api-php-client/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:google/google-api-php-client.git",
+          "type": "git",
+          "reference": "master"
+        }
+      }
+    },
+    "simplemachines/smf": {
+      "master": {
+        "name": "simplemachines/smf",
+        "version": "master",
+        "dist": {
+          "url": "https://github.com/SimpleMachines/SMF2.1/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "https://github.com/SimpleMachines/SMF2.1",
+          "type": "git",
+          "reference": "master"
+        }
+      },
+      "2.1": {
+        "name": "SimpleMachines/SMF",
+        "version": "2.1",
+        "dist": {
+          "url": "https://github.com/SimpleMachines/SMF2.1/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "https://github.com/SimpleMachines/SMF2.1",
+          "type": "git",
+          "reference": "master"
+        }
+      }
+    }
+  }
+}

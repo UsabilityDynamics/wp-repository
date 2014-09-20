@@ -1,0 +1,1441 @@
+{
+  "ok": true,
+  "packages": {
+
+    "usabilitydynamics/wp-fantastic-elasticsearch": {
+      "2.2.1": {
+        "name": "usabilitydynamics/wp-fantastic-elasticsearch",
+        "type": "wordpress-plugin",
+        "version": "2.2.1",
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-fantastic-elasticsearch/archive/2.2.1.zip",
+          "type": "zip"
+        },
+        "require": {
+          "php": ">=5.3",
+          "composer/installers": "~1.0"
+        },
+        "source": {
+          "url": "git@github.com:usabilitydynamics/wp-fantastic-elasticsearch",
+          "type": "git",
+          "reference": "2.2.1"
+        }
+      }
+    },
+
+    "usabilitydynamics/wp-veneer": {
+      "dev-develop": {
+        "name": "usabilitydynamics/wp-veneer",
+        "version": "dev-develop",
+        "type": "wordpress-module",
+        "keywords": [ "wordpress", "multisite", "varnish" ],
+        "author": {
+          "name": "Usability Dynamics",
+          "url": "http://UsabilityDynamics.com"
+        },
+        "license": "GPL-2.0",
+        "repositories": [
+          {
+            "type": "composer",
+            "url": "http://repository.usabilitydynamics.com"
+          }
+        ],
+        "config": {
+          "preferred-install": "source",
+          "vendor-dir": "vendor/libraries",
+          "bin-dir": "vendor/bin",
+          "component-dir": "vendor/components",
+          "optimize-autoloader": true
+        },        
+        "minimum-stability": "dev",
+        "require": {
+          "php": ">=5.3",
+          "monolog/monolog": "master",
+          "graze/monolog-extensions": "~1.4.0",
+          "mindscape/raygun4php": "dev-master",
+          "usabilitydynamics/lib-api": "master",
+          "usabilitydynamics/lib-settings": "master",
+          "usabilitydynamics/lib-ui": "master",
+          "usabilitydynamics/lib-utility": "master",
+          "matthiasmullie/minify": "1.2.0",
+          "mrclay/minify": "master"
+        },
+        "require-dev": {
+          "composer/installers": "~1.0",
+          "usabilitydynamics/lib-installer": "master"
+        },        
+        "autoload": {
+          "classmap": [
+            "lib/class-api.php",
+            "lib/class-bootstrap.php",
+            "lib/class-w3.php",
+            "lib/class-cache.php",
+            "lib/class-documents.php",
+            "lib/class-utility.php",
+            "lib/class-rewrites.php",
+            "lib/class-image.php",
+            "lib/class-log.php",
+            "lib/class-media.php",
+            "lib/class-security.php",
+            "lib/class-varnish.php",
+            "lib/class-search.php"
+           ]
+        },
+        "autoload-dev": {},
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-veneer/archive/develop.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:usabilitydynamics/wp-veneer",
+          "type": "git",
+          "reference": "develop"
+        },
+        "extra": {
+          "installer-name": "wp-veneer"
+        }
+      }
+    },
+      
+    "coffee2code/configure-smtp": {
+      "3.1": {
+        "name": "coffee2code/configure-smtp",
+        "type": "wordpress-plugin",
+        "version": "3.1",
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/configure-smtp.zip",
+          "type": "zip"
+        },
+        "require": {
+          "php": ">=5.3",
+          "composer/installers": "~1.0"
+        },
+        "source": {
+          "type": "svn",
+          "url": "http://plugins.svn.wordpress.org/configure-smtp/tags/",
+          "reference": "3.1"
+        }
+      }
+    },
+
+    "davidlaietta/recent-posts-flex-slider": {
+      "1.5": {
+        "name": "davidlaietta/recent-posts-flex-slider",
+        "type": "wordpress-plugin",
+        "version": "1.5",
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/recent-posts-flexslider.zip",
+          "type": "zip"
+        },
+        "require": {
+          "php": ">=5.3",
+          "composer/installers": "~1.0"
+        },
+        "source": {
+          "type": "svn",
+          "url": "http://plugins.svn.wordpress.org/recent-posts-flexslider/tags/",
+          "reference": "1.4"
+        }
+      }
+    },
+    
+    "buddypress/buddypress": {
+      "2.0.1": {
+        "name": "buddypress/buddypress",
+        "version": "2.0.1",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/buddypress.2.0.1.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "http://plugins.svn.wordpress.org/buddypress",
+          "type": "svn",
+          "reference": "tags/2.0.1"
+        }
+      },
+      "1.5.4": {
+        "name": "buddypress/buddypress",
+        "version": "1.5.4",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/buddypress.1.5.4.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "http://plugins.svn.wordpress.org/buddypress",
+          "type": "svn",
+          "reference": "tags/1.5.4"
+        },
+        "extra": {
+          "installer-name": "buddypress"
+        }        
+      }      
+    },    
+    "wordpress.org/debug-bar": {
+      "0.8.1": {
+        "name": "wordpress.org/debug-bar",
+        "version": "0.8.1",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/debug-bar.0.8.1.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "http://plugins.svn.wordpress.org/debug-bar",
+          "type": "svn",
+          "reference": "tags/0.8.1"
+        }
+      }
+    },
+    "wordpress.org/wordpress-importer": {
+      "0.6.1": {
+        "name": "wordpress.org/wordpress-importer",
+        "version": "0.6.1",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/wordpress-importer.0.6.1.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "http://plugins.svn.wordpress.org/wordpress-importer",
+          "type": "svn",
+          "reference": "tags/0.6.1"
+        }
+      }
+    },
+
+    "wpcloud/app-manager": {
+      "master": {
+        "name": "wpcloud/app-manager",
+        "version": "master",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "dist": {
+          "url": "https://github.com/wpCloud/wpcloud-app-manager/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:wpCloud/wpcloud-app-manager",
+          "type": "git",
+          "reference": "master"
+        }
+      }
+    },
+    
+    "usabilitydynamics/wp-foobar": {
+      "master": {
+        "name": "usabilitydynamics/wp-foobar",
+        "version": "master",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-foobar",
+          "type": "git",
+          "reference": "master"
+        },
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-foobar/archive/master.zip",
+          "type": "zip"
+        }
+      },
+      "2.5.7": {
+        "name": "usabilitydynamics/wp-foobar",
+        "version": "2.5.7",
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-foobar",
+          "type": "git",
+          "reference": "2.5.7"
+        },
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-foobar/archive/2.5.7.zip",
+          "type": "zip"
+        }
+      }
+    },
+    "usabilitydynamics/wp-shopp": {
+      "master": {
+        "name": "usabilitydynamics/wp-shopp",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "version": "master",
+        "autoload": {
+          "classmap": [
+            "core/library",
+            "core/model",
+            "core/flow"
+          ]
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-shopp",
+          "type": "git",
+          "reference": "master"
+        },
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-shopp/archive/master.zip",
+          "type": "zip"
+        },
+        "extra": {
+          "installer-name": "shopp"
+        }
+      },
+      "1.3.2": {
+        "name": "usabilitydynamics/wp-shopp",
+        "version": "1.3.2",
+        "autoload": {
+          "classmap": [
+            "core/library",
+            "core/model",
+            "core/flow"
+          ]
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-shopp",
+          "type": "git",
+          "reference": "1.3.2"
+        },
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-shopp/archive/1.3.2.zip",
+          "type": "zip"
+        },
+        "extra": {
+          "installer-name": "shopp"
+        }
+      }
+    },
+    "usabilitydynamics/wp-elastic": {
+      "master": {
+        "name": "usabilitydynamics/wp-elastic",
+        "description": "Improve WordPress search performance/accuracy and enable faceted search by leveraging an ElasticSearch server.",
+        "type": "wordpress-plugin",
+        "version": "master",
+        "autoload": {
+          "classmap": [ "lib" ],
+          "files":    [ "lib/api/autoload.php" ]
+        },
+        "require": {
+          "php": ">=5.3",
+          "composer/installers": "~1.0",
+          "usabilitydynamics/lib-model": "master",
+          "usabilitydynamics/lib-features": "master",
+          "usabilitydynamics/lib-settings": "master",
+          "usabilitydynamics/lib-meta-box": "master",
+          "usabilitydynamics/lib-utility": "master",
+          "usabilitydynamics/lib-api": "master",
+          "usabilitydynamics/lib-ui": "master"
+        },
+        "minimum-stability": "dev",
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-elastic/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-elastic",
+          "type": "git",
+          "reference": "master"
+        },
+        "extra": {
+          "installer-paths": {
+            "vendor/plugins/{$name}": [
+              "type:wordpress-plugin"
+            ],
+            "vendor/extensions/{$name}": [
+              "type:wordpress-module"
+            ],
+            "vendor/themes/{$name}": [
+              "type:wordpress-theme"
+            ]
+          },
+          "installer-name": "wp-elastic"
+        }
+      }
+    },
+    "usabilitydynamics/wp-provision": {
+      "master": {
+        "type": "wordpress-plugin",
+        "name": "usabilitydynamics/wp-provision",
+        "type": "wordpress-plugin",
+        "version": "master",
+        "support": {
+          "issues": "https://github.com/usabilitydynamics/wp-provision/issues"
+        },
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-provision/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-provision",
+          "type": "git",
+          "reference": "master"
+        },
+        "require": {
+          "php": ">=5.3",
+          "composer/installers": "~1.0",
+          "usabilitydynamics/lib-utility": "*",
+          "usabilitydynamics/lib-settings": "*",
+          "usabilitydynamics/lib-ui": "*"
+        },
+        "autoload": {
+          "files": [
+            "lib/class-bootstrap.php",
+            "lib/class-core.php",
+            "lib/class-settings.php",
+            "lib/class-ui.php",
+            "lib/class-utility.php"
+          ]
+        }
+      }
+    },
+    "usabilitydynamics/wp-menufication": {
+      "master": {
+        "name": "usabilitydynamics/wp-menufication",
+        "type": "wordpress-plugin",
+        "version": "master",
+        "autoload": {
+          "classmap": [ "lib" ]
+        },
+        "dist": {
+          "url": "https://github.com/UsabilityDynamics/wp-menufication/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-menufication",
+          "type": "git",
+          "reference": "master"
+        }
+      },
+      "1.1.0": {
+        "name": "usabilitydynamics/wp-menufication",
+        "version": "1.1.0",
+        "type": "wordpress-plugin",
+        "autoload": {
+          "classmap": [ "lib" ]
+        },
+        "dist": {
+          "url": "https://github.com/UsabilityDynamics/wp-menufication/archive/1.1.0.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-menufication",
+          "type": "git",
+          "reference": "1.1.0"
+        },
+        "extra": {
+          "installer-name": "wp-menufication-1.1.0"
+        }
+      }
+    },
+    "usabilitydynamics/wp-meta-box": {
+      "master": {
+        "name": "usabilitydynamics/wp-meta-box",
+        "version": "master",
+        "type": "wordpress-plugin",
+        "autoload": {
+          "classmap": [
+            "inc/fields",
+            "inc/common.php",
+            "inc/field.php",
+            "inc/helpers.php",
+            "inc/meta-box.php"
+          ]
+        },
+        "dist": {
+          "url": "https://github.com/UsabilityDynamics/wp-meta-box/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-meta-box",
+          "type": "git",
+          "reference": "master"
+        },
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "extra": {
+          "installer-name": "wp-meta-box"
+        }
+      },
+      "4.3.8": {
+        "name": "usabilitydynamics/wp-meta-box",
+        "version": "master",
+        "type": "wordpress-plugin",
+        "autoload": {
+          "classmap": [
+            "inc/fields",
+            "inc/common.php",
+            "inc/field.php",
+            "inc/helpers.php",
+            "inc/meta-box.php"
+          ]
+        },
+        "dist": {
+          "url": "https://github.com/UsabilityDynamics/wp-meta-box/archive/4.3.8.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-meta-box",
+          "type": "git",
+          "reference": "4.3.8"
+        },
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "extra": {
+          "installer-name": "wp-meta-box-4.3.8"
+        }
+      },
+      "4.3.6": {
+        "name": "usabilitydynamics/wp-meta-box",
+        "type": "wordpress-plugin",
+        "version": "4.3.6",
+        "autoload": {
+          "classmap": [
+            "inc/fields",
+            "inc/common.php",
+            "inc/field.php",
+            "inc/helpers.php",
+            "inc/meta-box.php"
+          ]
+        },
+        "dist": {
+          "url": "https://github.com/UsabilityDynamics/wp-meta-box/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-meta-box",
+          "type": "git",
+          "reference": "4.3.6"
+        }
+      }
+    },
+    "usabilitydynamics/wp-preview": {
+      "master": {
+        "type": "wordpress-plugin",
+        "name": "usabilitydynamics/wp-preview",
+        "version": "master",
+        "type": "wordpress-plugin",
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-preview/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-preview",
+          "type": "git",
+          "reference": "master"
+        },
+        "require": {
+          "php": ">=5.3",
+          "composer/installers": "~1.0",
+          "usabilitydynamics/lib-utility": "master",
+          "usabilitydynamics/lib-settings": "master",
+          "usabilitydynamics/lib-ui": "master"
+        },
+        "autoload": {
+          "sourcemap": [
+            "lib"
+          ]
+        }
+      }
+    },
+    "usabilitydynamics/wp-crm": {
+      "master": {
+        "type": "wordpress-plugin",
+        "name": "usabilitydynamics/wp-crm",
+        "version": "master",
+        "type": "wordpress-plugin",
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-crm/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-crm",
+          "type": "git",
+          "reference": "master"
+        },
+        "require": {
+          "php": ">=5.3",
+          "composer/installers": "~1.0",
+          "usabilitydynamics/lib-utility": "master",
+          "usabilitydynamics/lib-settings": "master",
+          "usabilitydynamics/lib-ui": "master"
+        },
+        "autoload": {}
+      }
+    },
+    "usabilitydynamics/wp-invoice": {
+      "master": {
+        "type": "wordpress-plugin",
+        "name": "usabilitydynamics/wp-invoice",
+        "version": "master",
+        "type": "wordpress-plugin",
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-invoice/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-invoice",
+          "type": "git",
+          "reference": "master"
+        },
+        "require": {
+          "php": ">=5.3",
+          "composer/installers": "~1.0",
+          "usabilitydynamics/lib-utility": "master",
+          "usabilitydynamics/lib-settings": "master",
+          "usabilitydynamics/lib-ui": "master"
+        },
+        "autoload": {}
+      }
+    },
+    "usabilitydynamics/wp-property": {
+      "master": {
+        "name": "usabilitydynamics/wp-property",
+        "version": "master",
+        "type": "wordpress-plugin",
+        "require": {
+          "php": ">=5.3",
+          "usabilitydynamics/lib-installer": "master",
+          "usabilitydynamics/lib-api": "master",
+          "usabilitydynamics/lib-ui": "master",
+          "usabilitydynamics/lib-installer": "master",
+          "usabilitydynamics/lib-module": "master",
+          "usabilitydynamics/lib-model": "master"
+        },
+        "require-dev": {
+          "wp-property/admin-tools": "master",
+          "wp-property/advanced-rewrites": "master",
+          "wp-property/agents": "master",
+          "wp-property/api-manager": "master",
+          "wp-property/availability": "master",
+          "wp-property/bookings": "master",
+          "wp-property/editor": "master",
+          "wp-property/enterprise": "master",
+          "wp-property/exporter": "master",
+          "wp-property/facebook-tabs": "master",
+          "wp-property/feps": "master",
+          "wp-property/importer": "master",
+          "wp-property/pdf": "master",
+          "wp-property/power-tools": "master",
+          "wp-property/slideshow": "master",
+          "wp-property/supermap": "master",
+          "wp-property/test-suite": "master",
+          "wp-property/term-editor": "master"
+        },
+        "autoload": {
+          "classmap": [ "lib" ]
+        },
+        "config": {
+          "vendor-dir": "vendor/libraries",
+          "bin-dir": "vendor/bin",
+          "optimize-autoloader": true,
+          "autoloader-suffix": "VendorWPP"
+        },
+        "extra": {
+          "installer-name": "wp-property",
+          "text_domain": "wpp",
+          "main-file": "wp-property.php",
+          "class": "UsabilityDynamics\\WPP",
+          "installer-paths": {
+            "vendor/modules/{$name}":       [ "type:wordpress-module" ],
+            "vendor/plugins/{$name}":       [ "type:wordpress-plugins" ],
+            "vendor/libraries/{$name}":     [ "type:wordpress-library" ],
+            "vendor/themes/{$name}":        [ "type:wordpress-theme" ]            
+          }
+        },
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-property/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-property",
+          "type": "git",
+          "reference": "master"
+        }
+      },
+      "1.38.2": {
+        "name": "usabilitydynamics/wp-property",
+        "version": "1.38.2",
+        "type": "wordpress-plugin",
+        "extra": {
+          "installer-name": "wp-property",
+          "installer-paths": {
+            "vendor/modules/{$name}":       [ "type:wordpress-module" ],
+            "vendor/libraries/{$name}":     [ "type:wordpress-library" ],
+            "vendor/themes/{$name}":        [ "type:wordpress-theme" ]
+          }
+        },
+        "homepage": "http://github.com/UsabilityDynamics/wp-property",
+        "repositories": [
+          {
+            "type": "composer",
+            "url": "http://repository.usabilitydynamics.com"
+          }
+        ],
+        "config": {
+          "vendor-dir": "vendor/libraries",
+          "bin-dir": "vendor/bin",
+          "optimize-autoloader": true,
+          "autoloader-suffix": "VendorPackages",
+          "component-dir": "js/vendor"
+        },
+        "require": {
+          "usabilitydynamics/lib-installer": "master",
+          "usabilitydynamics/lib-raas": "master"
+        },
+        "require-dev": {
+          "wp-property/importer": "master"
+        },
+        "minimum-stability": "dev"
+      }
+    },
+    "usabilitydynamics/wp-realty": {
+      "master": {
+        "name": "usabilitydynamics/wp-realty",
+        "version": "master",
+        "type": "wordpress-plugin",
+        "require": {
+          "php": ">=5.3",
+          "usabilitydynamics/lib-api": "master",
+          "usabilitydynamics/lib-installer": "master",
+          "usabilitydynamics/lib-raas": "master",
+          "usabilitydynamics/lib-model": "master",
+          "usabilitydynamics/lib-settings": "master",
+          "wp-realty/default-realty" : "master"
+        },
+        "require-dev": {
+          "wp-property/supermap": "master",
+          "wp-property/slideshow": "master",
+          "wp-property/power-tools": "master",
+          "wp-property/pdf": "master",
+          "wp-property/importer": "master",
+          "wp-property/exporter": "master",
+          "wp-property/feps": "master",
+          "wp-property/enterprise": "master",
+          "wp-property/agents": "master"
+        },
+        "autoload": {
+          "classmap": [ "lib" ]
+        },
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-realty/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-realty",
+          "type": "git",
+          "reference": "master"
+        },
+        "extra": {
+          "id": "wp-realty",
+          "text_domain": "wp-realty",
+          "installer-name": "wp-realty",
+          "installer-paths": {
+            "vendor/modules/{$name}":       [ "type:wordpress-module" ],
+            "vendor/libraries/{$name}":     [ "type:wordpress-library" ],
+            "vendor/themes/{$name}":        [ "type:wordpress-theme" ]
+          }
+        }
+      }
+    },
+    "usabilitydynamics/wp-rentals": {
+      "master": {
+        "name": "usabilitydynamics/wp-rentals",
+        "version": "master",
+        "type": "wordpress-plugin",
+        "require": {
+          "php": ">=5.3",
+          "composer/installers": "~1.0",
+          "usabilitydynamics/lib-api": "master",
+          "usabilitydynamics/lib-ui": "master",
+          "usabilitydynamics/lib-settings": "master",
+          "usabilitydynamics/lib-utility": "master",
+          "usabilitydynamics/lib-rpc": "master"
+        },
+        "require-dev": {},
+        "autoload": {
+          "classmap": [ "lib" ]
+        },
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-rentals/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-rentals",
+          "type": "git",
+          "reference": "master"
+        }
+      }
+    },
+    "usabilitydynamics/wp-rpc": {
+      "master": {
+        "name": "usabilitydynamics/wp-rpc",
+        "version": "master",
+        "type": "wordpress-plugin",
+        "minimum-stability": "dev",
+        "autoload": {
+          "classmap": [ "lib" ]
+        },
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-rpc/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-rpc",
+          "type": "git",
+          "reference": "master"
+        },
+        "require": {
+          "php": ">=5.3",
+          "composer/installers": "~1.0",
+          "usabilitydynamics/lib-ui": "master",
+          "usabilitydynamics/lib-settings": "master",
+          "usabilitydynamics/lib-api": "master",
+          "usabilitydynamics/lib-rest": "master",
+          "usabilitydynamics/lib-rpc": "master"
+        }
+      }
+    },
+    "usabilitydynamics/wp-amd": {
+      "master": {
+        "name": "usabilitydynamics/wp-amd",
+        "type": "wordpress-plugin",
+        "version": "master",
+        "minimum-stability": "dev",
+        "autoload": {
+          "classmap": [ "lib" ]
+        },
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-amd/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-amd",
+          "type": "git",
+          "reference": "master"
+        },
+        "require": {
+          "php": ">=5.3",
+          "composer/installers": "~1.0",
+          "usabilitydynamics/lib-ui": "master",
+          "usabilitydynamics/lib-settings": "master",
+          "usabilitydynamics/lib-requires": "master"
+        },
+        "extra": {
+          "installer-name": "wp-amd"
+        }
+      },
+      "1.0.2": {
+        "name": "usabilitydynamics/wp-amd",
+        "version": "1.0.2",
+        "minimum-stability": "dev",
+        "autoload": {
+          "classmap": [ "lib" ]
+        },
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-amd/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-amd",
+          "type": "git",
+          "reference": "master"
+        },
+        "require": {
+          "php": ">=5.3",
+          "usabilitydynamics/lib-ui": "master",
+          "usabilitydynamics/lib-settings": "master",
+          "usabilitydynamics/lib-requires": "master"
+        },
+        "extra": {
+          "installer-name": "wp-amd-1.0.2"
+        }
+      }
+    },
+    "usabilitydynamics/wp-simplify": {
+      "master": {
+        "name": "usabilitydynamics/wp-simplify",
+        "type": "wordpress-plugin",
+        "version": "master",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "autoload": {
+          "classmap": [ "lib" ]
+        },
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-simplify/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-simplify",
+          "type": "git",
+          "reference": "master"
+        }
+      },
+      "1.4.2": {
+        "name": "usabilitydynamics/wp-simplify",
+        "type": "wordpress-plugin",
+        "version": "1.4.2",
+        "support": {
+          "issues": "https://github.com/usabilitydynamics/wp-simplify/issues"
+        },
+        "autoload": {
+          "files": [
+            "lib/class-bootstrap.php",
+            "lib/class-simplify.php"
+          ]
+        },
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-simplify/archive/1.4.2.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-simplify",
+          "type": "git",
+          "reference": "1.4.2"
+        },
+        "extra": {
+          "installer-name": "wp-simplify-1.4.2"
+        }
+      },
+      "1.4.1": {
+        "name": "usabilitydynamics/wp-simplify",
+        "type": "wordpress-plugin",
+        "version": "1.4.1",
+        "support": {
+          "issues": "https://github.com/usabilitydynamics/wp-simplify/issues"
+        },
+        "autoload": {
+          "files": [
+            "lib/class-bootstrap.php",
+            "lib/class-simplify.php"
+          ]
+        },
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-simplify/archive/1.4.1.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-simplify",
+          "type": "git",
+          "reference": "1.4.1"
+        },
+        "extra": {
+          "installer-name": "wp-simplify-1.4.1"
+        }
+      }
+    },
+    "usabilitydynamics/wp-resizely": {
+      "master": {
+        "name": "usabilitydynamics/wp-resizely",
+        "type": "wordpress-plugin",
+        "version": "master",
+        "require": {
+          "php": ">=5.3",
+          "composer/installers": "~1.0",
+          "usabilitydynamics/lib-wp-bootstrap": "*",
+          "usabilitydynamics/lib-utility": "*",
+          "usabilitydynamics/lib-settings": "*",
+          "usabilitydynamics/lib-ui": "*",
+          "usabilitydynamics/resizely-client": "*"
+        },
+        "autoload": {
+          "psr-0": {
+            "usabilitydynamics\\WP_Resizely": "src/"
+          }
+        },
+        "dist": {
+          "url": "https://github.com/UsabilityDynamics/wp-resizely/archive/0.1.2.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-resizely",
+          "type": "git",
+          "reference": "0.1.2"
+        }
+      },
+      "0.1.2": {
+        "name": "usabilitydynamics/wp-resizely",
+        "type": "wordpress-plugin",
+        "version": "0.1.2",
+        "require": {
+          "php": ">=5.3",
+          "composer/installers": "~1.0",
+          "usabilitydynamics/lib-wp-bootstrap": "*",
+          "usabilitydynamics/lib-utility": "*",
+          "usabilitydynamics/lib-settings": "*",
+          "usabilitydynamics/lib-ui": "*",
+          "usabilitydynamics/resizely-client": "*"
+        },
+        "autoload": {
+          "psr-0": {
+            "usabilitydynamics\\WP_Resizely": "src/"
+          }
+        },
+        "dist": {
+          "url": "https://github.com/UsabilityDynamics/wp-resizely/archive/0.1.2.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-resizely",
+          "type": "git",
+          "reference": "0.1.2"
+        }
+      }
+    },
+
+    "woothemes/woocommerce": {
+      "2.1.8": {
+        "name": "woothemes/woocommerce",
+        "version": "2.1.8",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/woocommerce.2.1.8.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "http://plugins.svn.wordpress.org/woocommerce",
+          "type": "svn",
+          "reference": "tags/2.1.8"
+        },
+        "extra": {
+          "installer-name": "woocommerce"
+        }
+      }
+    },
+    "woocommerce/api-manager": {
+      "1.3.3": {
+        "name": "woocommerce/api-manager",
+        "version": "1.3.3",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/woocommerce-api-manager/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/woocommerce-api-manager",
+          "type": "git",
+          "reference": "1.3.3"
+        },
+        "extra": {
+          "installer-name": "woocommerce-api-manager"
+        }
+      }
+    },
+
+    "slidedeck/slidedeck-pro": {
+      "1.4.5": {
+        "name": "slidedeck/slidedeck-pro",
+        "version": "1.4.5",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/slidedeck-pro-for-wordpress/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/slidedeck-pro-for-wordpress",
+          "type": "git",
+          "reference": "1.4.5"
+        },
+        "extra": {
+          "installer-name": "slidedeck-pro-for-wordpress"
+        }
+      }
+    },    
+    "matchalabs/ml-slider": {
+      "2.8": {
+        "name": "matchalabs/ml-slider",
+        "version": "2.8",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/ml-slider.2.8.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "http://plugins.svn.wordpress.org/ml-slider",
+          "type": "svn",
+          "reference": "tags/2.8"
+        },
+        "extra": {
+          "installer-name": "ml-sider-2.8"
+        }
+      }
+    },
+    "siteorigin/panels": {
+      "master": {
+        "name": "siteorigin/panels",
+        "type": "wordpress-plugin",
+        "version": "master",
+        "require": {
+          "php": ">=5.3",
+          "composer/installers": "~1.0"
+        },
+        "keywords": [
+          "wordpress",
+          "page-builder",
+          "admin",
+          "builder",
+          "responsive"
+        ],
+        "description": "Build responsive page layouts using the widgets you know and love using this simple drag and drop page builder.",
+        "homepage": "http://siteorigin.com/page-builder/",
+        "license": "GPLv2",
+        "minimum-stability": "dev",
+        "authors": [
+          {
+            "name": "Greg Priday",
+            "email": "support@siteorigin.com",
+            "homepage": "http://siteorigin.com/",
+            "role": "WordPress Developer"
+          }
+        ],
+        "dist": {
+          "url": "https://github.com/UsabilityDynamics/siteorigin-panels/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/siteorigin-panels",
+          "type": "git",
+          "reference": "master"
+        },
+        "autoload": {
+          "classmap": [
+            "widgets/basic.php",
+            "widgets/widgets/testimonial/testimonial.php",
+            "widgets/widgets/price-box/price-box.php",
+            "widgets/widgets/list/list.php",
+            "widgets/widgets/call-to-action/call-to-action.php",
+            "widgets/widgets/button/button.php",
+            "widgets/widgets/animated-image/animated-image.php",
+            "widgets/lib/color.php"
+          ]
+        },
+        "extra": {
+          "installer-name": "siteorigin-panels",
+          "main-file": "siteorigin-panels.php",
+          "text_domain": "siteorigin-panels"
+        }
+      },
+      "1.4.11": {
+        "name": "siteorigin/panels",
+        "version": "1.4.11",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/siteorigin-panels.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "http://plugins.svn.wordpress.org/siteorigin-panels",
+          "type": "svn",
+          "reference": "trunk"
+        },
+        "extra": {
+          "installer-name": "siteorigin-panels"
+        }
+      }
+    },
+    "automattic/jetpack": {
+      "master": {
+        "name": "automattic/jetpack",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "version": "master",
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/jetpack.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "http://plugins.svn.wordpress.org/jetpack",
+          "type": "svn",
+          "reference": "trunk"
+        },
+        "extra": {
+          "installer-name": "jetpack"
+        }
+      },
+      "2.9.3": {
+        "name": "automattic/jetpack",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "version": "2.9.3",
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/jetpack.2.9.3.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "http://plugins.svn.wordpress.org/jetpack",
+          "type": "svn",
+          "reference": "tags/2.9.3"
+        },
+        "extra": {
+          "installer-name": "jetpack-2.9.3"
+        }
+      }
+    },
+    "automattic/akismet": {
+      "master": {
+        "name": "automattic/akismet",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "version": "master",
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/akismet.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "http://plugins.svn.wordpress.org/akismet",
+          "type": "svn",
+          "reference": "trunk"
+        },
+        "extra": {
+          "installer-name": "akismet"
+        }
+      },
+      "3.0.0": {
+        "name": "automattic/akismet",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "version": "3.0.0",
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/akismet.3.0.0.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "http://plugins.svn.wordpress.org/akismet",
+          "type": "svn",
+          "reference": "tags/3.0.0"
+        },
+        "extra": {
+          "installer-name": "akismet-3.0.0"
+        }
+      }
+    },
+    "yoast/wp-seo": {
+      "master": {
+        "name": "yoast/wp-seo",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "version": "master",
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/wordpress-seo.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "http://plugins.svn.wordpress.org/wordpress-seo",
+          "type": "svn",
+          "reference": "trunk"
+        }
+      },
+      "1.5.2.8": {
+        "name": "yoast/wp-seo",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "version": "1.5.2.8",
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/wordpress-seo.1.5.2.8.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "http://plugins.svn.wordpress.org/wordpress-seo",
+          "type": "svn",
+          "reference": "tags/1.5.2.8"
+        },
+        "extra": {
+          "installer-name": "wp-seo"
+        }
+      },
+      "1.1.5": {
+        "name": "yoast/wp-seo",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "version": "1.1.5",
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/wordpress-seo.1.1.5.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "http://plugins.svn.wordpress.org/wordpress-seo",
+          "type": "svn",
+          "reference": "tags/1.1.5"
+        },
+        "extra": {
+          "installer-name": "wp-seo"
+        }
+      }      
+    },
+    "w3-edge/w3-total-cache": {
+      "master": {
+        "name": "w3-edge/w3-total-cache",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "version": "master",
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/w3-total-cache.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "http://plugins.svn.wordpress.org/w3-total-cache",
+          "type": "svn",
+          "reference": "trunk"
+        }
+      },
+      "0.9.4": {
+        "name": "w3-edge/w3-total-cache",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "version": "0.9.4",
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/w3-total-cache.0.9.4.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "http://plugins.svn.wordpress.org/w3-total-cache",
+          "type": "svn",
+          "reference": "tags/0.9.4"
+        },
+        "extra": {
+          "installer-name": "w3-total-cache"
+        }
+      },
+      "0.9.2.9": {
+        "name": "w3-edge/w3-total-cache",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "version": "0.9.2.9",
+        "dist": {
+          "url": "http://downloads.wordpress.org/plugin/w3-total-cache.0.9.2.9.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "http://plugins.svn.wordpress.org/w3-total-cache",
+          "type": "svn",
+          "reference": "tags/0.9.2.9"
+        },
+        "extra": {
+          "installer-name": "w3-total-cache"
+        }
+      }      
+    },
+    "wordpress/regenerate-thumbnails": {
+      "2.3.0": {
+        "name": "wordpress/regenerate-thumbnails",
+        "type": "wordpress-plugin",
+        "require": {
+          "composer/installers": "~1.0"
+        },
+        "type": "wordpress-plugin",
+        "version": "2.3.0",
+        "dist": {
+          "url": "https://github.com/Viper007Bond/regenerate-thumbnails/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "https://github.com/Viper007Bond/regenerate-thumbnails",
+          "type": "git",
+          "reference": "master"
+        }
+      }
+    },
+    "usabilitydynamics/wp-network": {
+      "master": {
+        "name": "usabilitydynamics/wp-network",
+        "type": "wordpress-plugin",
+        "version": "master",
+        "require": {
+          "php": ">=5.3",
+          "composer/installers": "~1.0",
+          "usabilitydynamics/lib-utility": "*"
+        },
+        "autoload": {
+          "classmap": [
+            "lib"
+          ]
+        },
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-network/archive/master.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-network",
+          "type": "git",
+          "reference": "master"
+        }
+      },
+      "0.1.0": {
+        "name": "usabilitydynamics/wp-network",
+        "type": "wordpress-plugin",
+        "version": "0.1.0",
+        "require": {
+          "php": ">=5.3",
+          "composer/installers": "~1.0",
+          "usabilitydynamics/lib-utility": "*"
+        },
+        "autoload": {
+          "classmap": [ "lib" ]
+        },
+        "dist": {
+          "url": "https://github.com/usabilitydynamics/wp-network/archive/0.1.0.zip",
+          "type": "zip"
+        },
+        "source": {
+          "url": "git@github.com:UsabilityDynamics/wp-network",
+          "type": "git",
+          "reference": "0.1.0"
+        }
+      }
+    }
+  }
+}

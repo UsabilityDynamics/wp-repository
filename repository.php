@@ -15,19 +15,7 @@
 // @legacy
 add_action( 'init', function() {
 
-  function time_ago( $time ) {
-
-  $_ago = round( ( ( time() - $time ) )  / 60 );
-
-  if( $_ago == 0 ) {
-    return 'less than a minute ago';
-  }
-
-  return $_ago . ' minutes ago';
-
-}
-
-  function get_includes() {
+  function get_repository_includes() {
 
     $_list = array();
 
@@ -45,16 +33,31 @@ add_action( 'init', function() {
 
   }
 
-  header( 'Cache-Control:no-cache' );
-  header( 'Content-Type:application/json' );
-  header( 'Last-Modified:Thu, 08 May 2014 22:01:01 GMT' );
-  header( 'Date:Thu, 08 May 2014 22:10:21 GMT' );
+});
 
-  $_response = array(
-    "ok" => true,
-    "includes" => get_includes()
-  );
 
-  die( json_encode( $_response ) );
+add_action( 'template_redirect', function() {
+	global $wp_query, $wp;
+
+	if( $_SERVER[ 'REQUEST_URI' ] === '/package.json' ) {
+		render_main_package();
+	}
 
 });
+
+
+function render_main_package() {
+
+	header( 'Cache-Control:no-cache' );
+	header( 'Content-Type:application/json' );
+	header( 'Last-Modified:Thu, 08 May 2014 22:01:01 GMT' );
+	header( 'Date:Thu, 08 May 2014 22:10:21 GMT' );
+
+	$_response = array(
+		"ok" => true,
+		"includes" => get_repository_includes()
+	);
+
+	die( json_encode( $_response ) );
+
+}
