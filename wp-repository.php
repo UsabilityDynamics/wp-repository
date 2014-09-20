@@ -1,12 +1,11 @@
 <?php
 /**
- * Plugin Name: Repositories
+ * Plugin Name: Repository Manager
  * Plugin URI: http://usabilitydynamics.com/plugins/
- * Description: -
+ * Description: Composer and stuff.
  * Author: Usability Dynamics, Inc.
  * Version: 1.0
  * Author URI: http://usabilitydynamics.com
- *
  *
  * /home/ud/storage/repositories
  *
