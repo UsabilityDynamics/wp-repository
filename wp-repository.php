@@ -11,6 +11,11 @@
  *
  */
 
+add_filter('upload_mimes', function ( $existing_mimes=array() ) {
+	$existing_mimes['json'] = 'application/json';
+	return $existing_mimes;
+});
+
 // @legacy
 add_action( 'init', function() {
 
@@ -32,7 +37,7 @@ add_action( 'template_redirect', function() {
 	$_subdomain = false;
 	$_basePath = false;
 
-	if( $wp_query->query[ 'name' ] === 'packages.json' && $_SERVER[ 'REQUEST_URI' ] === '/packages.json' ) {
+	if( $_SERVER[ 'REQUEST_URI' ] === '/packages.json' ) {
 		$_basePath = true;
 	}
 
@@ -69,6 +74,7 @@ function get_repository_includes() {
 		);
 
 	}
+
 
 	return $_list;
 
