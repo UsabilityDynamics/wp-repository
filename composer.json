@@ -8,7 +8,7 @@
   "config": {
     "preferred-install": "source",
     "github-protocols": [ "ssh" ],
-    "vendor-dir": "vendor",
+    "vendor-dir": "vendor/libraries",
     "bin-dir": "vendor/bin",
     "optimize-autoloader": true
   },
