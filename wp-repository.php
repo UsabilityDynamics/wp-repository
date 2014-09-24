@@ -59,22 +59,21 @@ function get_repository_includes() {
 
 	$_list = array();
 
-	if( !is_dir( WP_REPOSITORY_PATH ) ) {
+	if( !defined( 'WP_REPOSITORY_PATH' ) || !is_dir( WP_REPOSITORY_PATH ) ) {
 		return $_list;
 	}
+  
+  $url_path = plugin_dir_url( trailingslashit( str_ireplace( '/www/', '/public_html/', WP_REPOSITORY_PATH ) ) . 'packages.json' );
+  $url_path = str_ireplace( home_url(), '', $url_path );
 
 	foreach (glob( WP_REPOSITORY_PATH . "/*.json") as $filename) {
-
-		$_relativePath = '/' . str_replace( '', '', basename( $filename ) );;
-
-		$_list[ $_relativePath ] = array(
+		$_list[ $url_path . basename( $filename ) ] = array(
 			'sha1' => sha1( filemtime( $filename ) ),
 			'updated' => filemtime( $filename ),
 			'description' => 'Updated ' . human_time_diff( filemtime( $filename ) ) . '.'
 		);
 
 	}
-
 
 	return $_list;
 
