@@ -1,16 +1,12 @@
 {
-  "name": "usabilitydynamics.com/wp-repository",
-  "version": "0.1.0",
-  "type": "wordpress-plugin",
-  "homepage": "https://github.com/UsabilityDynamics/wp-repository",
-  "keywords": [],
+  "name": "usabilitydynamics/wp-repository",
+  "version": "0.2.0",
+  "type": "plugin",
   "minimum-stability": "dev",
-  "config": {
-    "preferred-install": "source",
-    "github-protocols": [ "ssh" ],
-    "vendor-dir": "vendor/libraries",
-    "bin-dir": "vendor/bin",
-    "optimize-autoloader": true
+  "homepage": "https://usabilitydynamics.com",
+  "author": {
+    "name": "UsabilityDynamics, Inc.",
+    "url": "https://usabilitydynamics.com"
   },
   "repositories": [
     {
@@ -22,33 +18,66 @@
       "url":"http://wpackagist.org"
     }
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/usabilitydynamics/wp-repository.git"
+  },
   "require": {
     "php": ">=5.3",
-    "composer/installers": "~1.0",
     "usabilitydynamics/composer-github-updater": "master",
-    "usabilitydynamics/lib-settings": "0.2.2"
+    "usabilitydynamics/lib-wp-bootstrap": "master",
+    "usabilitydynamics/lib-ui": "master",
+    "usabilitydynamics/lib-settings": "master"
   },
-  "require-dev": {},
-  "authors": [
-    {
-      "name": "Andy Potanin",
-      "email": "andy.potanin@usabilitydynamics.com",
-      "homepage": "http://usabilitydynamics.com",
-      "role": "Developer"
-    },
-    {
-      "name": "Maxim Peshkov",
-      "email": "maxim.peshkov@usabilitydynamics.com",
-      "homepage": "http://usabilitydynamics.com",
-      "role": "Developer"
-    },
-    {
-      "name": "Anton Korotkov",
-      "email": "anton.korotkov@usabilitydynamics.com",
-      "homepage": "http://usabilitydynamics.com",
-      "role": "Developer"
+  "require-dev": {
+    "usabilitydynamics/lib-wp-phpunit": "master",
+    "codeclimate/php-test-reporter": "dev-master"
+  },
+  "autoload": {
+    "classmap": [ "lib/classes" ]
+  },
+  "extra": {
+    "settings": {
+      "defaults": {
+        "github_access_token": "",
+        "organizations": ""
+      },
+      "ui": {
+        "configuration": {
+          "secondary_menu": {
+            "parent_slug": "tools.php",
+            "page_title": "Composer Repository Manager",
+            "menu_title": "Composer Repository",
+            "menu_slug": "composer_rep_settings"
+          }
+        },
+        "menu": {
+          "settings": {
+            "id": "settings",
+            "name": "Settings"
+          }
+        },
+        "sections": {
+          "github_api": {
+            "id": "github_api",
+            "name": "Github API Settings",
+            "menu": "settings"
+          }
+        },
+        "fields": [
+          {
+            "id": "github_access_token",
+            "name": "Access Token",
+            "section": "github_api"
+          },
+          {
+            "id": "organizations",
+            "name": "Organizations",
+            "section": "github_api",
+            "desc": "Organizations must be added via comma."
+          }
+        ]
+      }
     }
-  ],
-  "extra": {},
-  "license": "GNU"
+  }
 }

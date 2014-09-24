@@ -1,128 +1,23 @@
 /**
- * Feature Module Build.
+ * Build Plugin
  *
- * @author potanin@UD
- * @version 1.1.2
+ * @author Usability Dynamics, Inc.
+ * @version 2.0.0
  * @param grunt
  */
 module.exports = function build( grunt ) {
 
-  // Require Utility Modules.
-  var joinPath      = require( 'path' ).join;
-  var resolvePath   = require( 'path' ).resolve;
-  var findup        = require( 'findup-sync' );
+  // Automatically Load Tasks.
+  require( 'load-grunt-tasks' )( grunt, {
+    pattern: 'grunt-*',
+    config: './package.json',
+    scope: 'devDependencies'
+  });
 
-  // Determine Paths.
-  var _paths = {
-    composer: findup( 'composer.json' ),
-    package: findup( 'package.json' ),
-    vendor: findup( 'vendor' ),
-    languages: findup( 'static/languages' ),
-    codex: findup( 'static/codex' ),
-    styles: findup( 'static/styles' ),
-    scripts: findup( 'static/scripts' ),
-    phpTests: findup( 'static/test/php' ),
-    jsTests: findup( 'static/test/js' )
-  };
+  grunt.initConfig( {
 
-  grunt.initConfig({
-
-    // Ready Composer Meta.
-    meta: grunt.file.readJSON( _paths.composer ),
-
-    // Read Composer File.
-    settings: grunt.file.readJSON( _paths.composer ).extra,
-
-    // Locale.
-    pot: {
-      options:{
-        package_name: '<%= meta.name %>',
-        package_version: '<%= meta.version %>',
-        text_domain: '<%= settings.text_domain %>',
-        dest: _paths.languages,
-        keywords: [ 'gettext', 'ngettext:1,2' ]
-      },
-      files:{
-        src: [ 'lib/*.php' ],
-        expand: true
-      }
-    },
-
-    // Generate Documentation.
-    yuidoc: {
-      compile: {
-        name: '<%= meta.name %>',
-        description: '<%= meta.description %>',
-        version: '<%= meta.version %>',
-        url: '<%= meta.homepage %>',
-        options: {
-          paths: [ 'lib', 'static/scripts/src' ],
-          outdir: _paths.codex
-        }
-      }
-    },
-
-    // Compile LESS.
-    less: {
-      production: {
-        options: {
-          yuicompress: true,
-          relativeUrls: true
-        },
-        files: [
-          {
-            expand: true,
-            cwd: joinPath( resolvePath( _paths.styles ), 'src' ),
-            src: [ '*.less' ],
-            dest: _paths.styles,
-            rename: function renameLess( dest, src ) {
-              return joinPath( dest, src.replace( '.less', '.css' ) );
-            }
-
-          }
-        ]
-      }
-    },
-
-    // Development Watch.
-    watch: {
-      options: {
-        interval: 100,
-        debounceDelay: 500
-      },
-      less: {
-        files: [
-          'static/styles/src/*.less'
-        ],
-        tasks: [ 'less' ]
-      },
-      js: {
-        files: [
-          'static/scripts/src/*.*'
-        ],
-        tasks: [ 'uglify' ]
-      }
-    },
-
-    // Uglify Scripts.
-    uglify: {
-      production: {
-        options: {
-          preserveComments: false,
-          wrap: false
-        },
-        files: [
-          {
-            expand: true,
-            cwd: resolvePath( _paths.scripts ) + '/src',
-            src: [ '*.js' ],
-            dest: 'static/scripts'
-          }
-        ]
-      }
-    },
-
-    // Generate Markdown.
+    package: grunt.file.readJSON( 'composer.json' ),
+    
     markdown: {
       all: {
         files: [
@@ -145,42 +40,187 @@ module.exports = function build( grunt ) {
       }
     },
 
-    // Clean for Development.
-    clean: {},
-
-    // Usage Tests.
-    mochacli: {
-      options: {
-        requires: [ 'should' ],
-        reporter: 'list',
-        ui: 'exports',
-        bail: false
+    // Compile LESS
+    less: {
+      production: {
+        options: {
+          yuicompress: true,
+          relativeUrls: true
+        },
+        files: {}
       },
+      development: {
+        options: {
+          relativeUrls: true
+        },
+        files: {}
+      }
+    },
+
+    watch: {
+      options: {
+        interval: 100,
+        debounceDelay: 500
+      },
+      less: {
+        files: [
+          'static/styles/src/*.*'
+        ],
+        tasks: [ 'less' ]
+      },
+      js: {
+        files: [
+          'static/scripts/src/*.*'
+        ],
+        tasks: [ 'uglify' ]
+      }
+    },
+
+    uglify: {
+      production: {
+        options: {
+          mangle: false,
+          beautify: false
+        },
+        files: [
+          {
+            expand: true,
+            cwd: 'static/scripts/src',
+            src: [ '*.js' ],
+            dest: 'static/scripts'
+          }
+        ]
+      },
+      staging: {
+        options: {
+          mangle: false,
+          beautify: true
+        },
+        files: [
+          {
+            expand: true,
+            cwd: 'static/scripts/src',
+            src: [ '*.js' ],
+            dest: 'static/scripts'
+          }
+        ]
+      }
+    },
+
+    clean: {
+      update: [
+        "composer.lock"
+      ],
       all: [
-        'static/test/js/*.js'
+        "vendor",
+        "composer.lock"
       ]
+    },
+
+    shell: {
+      /**
+       * Build Distribution
+       */
+      build: {
+        command: function( tag, build_type ) {
+          return [
+            'sh build.sh ' + tag + ' ' + build_type
+          ].join( ' && ' );
+        },
+        options: {
+          encoding: 'utf8',
+          stderr: true,
+          stdout: true
+        }
+      },
+      /**
+       * Runs PHPUnit test, creates code coverage and sends it to Scrutinizer
+       */
+      coverageScrutinizer: {
+        command: [
+          'grunt phpunit:circleci --coverage-clover=coverage.clover',
+          'wget https://scrutinizer-ci.com/ocular.phar',
+          'php ocular.phar code-coverage:upload --format=php-clover coverage.clover'
+        ].join( ' && ' ),
+        options: {
+          encoding: 'utf8',
+          stderr: true,
+          stdout: true
+        }
+      },
+      /**
+       * Runs PHPUnit test, creates code coverage and sends it to Code Climate
+       */
+      coverageCodeClimate: {
+        command: [
+          'grunt phpunit:circleci --coverage-clover build/logs/clover.xml',
+          'CODECLIMATE_REPO_TOKEN='+ process.env.CODECLIMATE_REPO_TOKEN + ' ./vendor/bin/test-reporter'
+        ].join( ' && ' ),
+        options: {
+          encoding: 'utf8',
+          stderr: true,
+          stdout: true
+        }
+      },
+      /**
+       * Composer Install
+       */
+      install: {
+        options: {
+          stdout: true
+        },
+        command: 'composer install --no-dev'
+      },
+      /**
+       * Composer Update
+       */
+      update: {
+        options: {
+          stdout: true
+        },
+        command: 'composer update --no-dev --prefer-source'
+      }
+    },
+    
+    // Runs PHPUnit Tests
+    phpunit: {
+      classes: {},
+      options: {
+        bin: './vendor/bin/phpunit',
+      },
+      local: {
+        configuration: './test/php/phpunit.xml'
+      },
+      circleci: {
+        configuration: './test/php/phpunit-circle.xml'
+      }
     }
 
   });
 
-  // Load NPM Tasks.
-  grunt.loadNpmTasks( 'grunt-markdown' );
-  grunt.loadNpmTasks( 'grunt-contrib-yuidoc' );
-  grunt.loadNpmTasks( 'grunt-contrib-uglify' );
-  grunt.loadNpmTasks( 'grunt-contrib-watch' );
-  grunt.loadNpmTasks( 'grunt-contrib-less' );
-  grunt.loadNpmTasks( 'grunt-contrib-concat' );
-  grunt.loadNpmTasks( 'grunt-contrib-clean' );
-  grunt.loadNpmTasks( 'grunt-mocha-cli' );
-  grunt.loadNpmTasks( 'grunt-pot' );
+  // Register tasks
+  grunt.registerTask( 'default', [ 'markdown', 'less' , 'uglify' ] );
+  
+  // Build Distribution
+  grunt.registerTask( 'distribution', [ 'markdown' ] );
 
-  // Default Build.
-  grunt.registerTask( 'default', [ 'markdown', 'less' , 'yuidoc', 'uglify' ] );
-
-  // Default Build.
-  grunt.registerTask( 'build', [ 'markdown', 'less' , 'yuidoc', 'uglify' ] );
-
-  // Build Distribution.
-  grunt.registerTask( 'distribution', [ 'mochacli:all', 'clean:all', 'markdown', 'less', 'uglify' ] );
+  // Install|Update Environment
+  grunt.registerTask( 'install', [ "clean:all", "shell:install" ] );
+  grunt.registerTask( 'update', [ "clean:update", "shell:update" ] );
+  
+  // Run coverage tests
+  grunt.registerTask( 'testscrutinizer', [ 'shell:coverageScrutinizer' ] );
+  grunt.registerTask( 'testcodeclimate', [ 'shell:coverageCodeClimate' ] );
+  
+  // Test and Build
+  grunt.registerTask( 'localtest', [ 'phpunit:local' ] );
+  grunt.registerTask( 'test', [ 'phpunit:circleci' ] );
+  
+  // Build project
+  grunt.registerTask( 'build', 'Run all my build tasks.', function( tag, build_type ) {
+    if ( tag == null ) grunt.warn( 'Build tag must be specified, like build:1.0.0' );
+    if( build_type == null ) build_type = 'production';
+    grunt.task.run( 'shell:build:' + tag + ':' + build_type );
+  });
 
 };

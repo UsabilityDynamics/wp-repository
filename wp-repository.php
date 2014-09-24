@@ -1,105 +1,94 @@
 <?php
 /**
- * Plugin Name: Repository Manager
- * Plugin URI: http://usabilitydynamics.com/plugins/
- * Description: Composer and stuff.
+ * Plugin Name: WP-Repository
+ * Plugin URI: https://usabilitydynamics.com
+ * Description: Custom Composer Repository for Wordpress
  * Author: Usability Dynamics, Inc.
- * Version: 0.1.0
+ * Version: 0.2.0
+ * Text Domain: wp_repository
  * Author URI: http://usabilitydynamics.com
  *
- * /home/ud/storage/repositories
+ * Copyright 2012 - 2014 Usability Dynamics, Inc.  ( email : info@usabilitydynamics.com )
  *
  */
 
-add_filter('upload_mimes', function ( $existing_mimes=array() ) {
-	$existing_mimes['json'] = 'application/json';
-	return $existing_mimes;
-});
+if( !function_exists( 'ud_get_wp_repository' ) ) {
 
-// @legacy
-add_action( 'init', function() {
-
-	if( !defined( 'WP_REPOSITORY_PATH' ) ) {
-
-		if( function_exists( 'getenv' ) && getenv( 'WP_REPOSITORY_PATH' ) ) {
-			define( 'WP_REPOSITORY_PATH', getenv( 'WP_REPOSITORY_PATH' ) );
-		} else {
-			define( 'WP_REPOSITORY_PATH', WP_CONTENT_DIR . '/static/repository' );
-		}
-
-	}
-
-});
-
-add_action( 'template_redirect', function() {
-	global $wp_query;
-
-	$_subdomain = false;
-	$_basePath = false;
-
-	if( $_SERVER[ 'REQUEST_URI' ] === '/packages.json' ) {
-		$_basePath = true;
-	}
-
-	if( strpos( $_SERVER[ 'HTTP_HOST' ], 'repository' ) === 0 ) {
-		$_subdomain = true;
-	}
-
-	if( $_subdomain && $_basePath ) {
-		render_main_package();
-	}
-
-});
-
-/**
- *
- * @return array
- */
-function get_repository_includes() {
-
-	$_list = array();
-
-	if( !defined( 'WP_REPOSITORY_PATH' ) || !is_dir( WP_REPOSITORY_PATH ) ) {
-		return $_list;
-	}
-  
-  $url_path = plugin_dir_url( trailingslashit( str_ireplace( '/www/', '/public_html/', WP_REPOSITORY_PATH ) ) . 'packages.json' );
-  $url_path = str_ireplace( home_url(), '', $url_path );
-
-	foreach (glob( WP_REPOSITORY_PATH . "/*.json") as $filename) {
-		$_list[ $url_path . basename( $filename ) ] = array(
-			'sha1' => sha1( filemtime( $filename ) ),
-			'updated' => filemtime( $filename ),
-			'description' => 'Updated ' . human_time_diff( filemtime( $filename ) ) . '.'
-		);
-
-	}
-
-	return $_list;
+  /**
+   * Returns  Instance
+   *
+   * @author Usability Dynamics, Inc.
+   * @since 0.2.0
+   */
+  function ud_get_wp_repository( $key = false, $default = null ) {
+    $instance = \UsabilityDynamics\WPR\Bootstrap::get_instance();
+    return $key ? $instance->get( $key, $default ) : $instance;
+  }
 
 }
 
-/**
- *
- */
-function render_main_package() {
+if( !function_exists( 'ud_check_wp_repository' ) ) {
+  /**
+   * Determines if plugin can be initialized.
+   *
+   * @author Usability Dynamics, Inc.
+   * @since 0.2.0
+   */
+  function ud_check_wp_repository() {
+    global $_ud_wp_repository_error;
+    try {
+      //** Be sure composer.json exists */
+      $file = dirname( __FILE__ ) . '/composer.json';
+      if( !file_exists( $file ) ) {
+        throw new Exception( __( 'Distributive is broken. composer.json is missed. Try to remove and upload plugin again.', 'wp_repository' ) );
+      }
+      $data = json_decode( file_get_contents( $file ), true );
+      //** Be sure PHP version is correct. */
+      if( !empty( $data[ 'require' ][ 'php' ] ) ) {
+        preg_match( '/^([><=]*)([0-9\.]*)$/', $data[ 'require' ][ 'php' ], $matches );
+        if( !empty( $matches[1] ) && !empty( $matches[2] ) ) {
+          if( !version_compare( PHP_VERSION, $matches[2], $matches[1] ) ) {
+            throw new Exception( sprintf( __( 'Plugin requires PHP %s or higher. Your current PHP version is %s', 'wp_repository' ), $matches[2], PHP_VERSION ) );
+          }
+        }
+      }
+      //** Be sure vendor autoloader exists */
+      if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
+        require_once ( dirname( __FILE__ ) . '/vendor/autoload.php' );
+      } else {
+        throw new Exception( sprintf( __( 'Distributive is broken. %s file is missed. Try to remove and upload plugin again.', 'wp_repository' ), dirname( __FILE__ ) . '/vendor/autoload.php' ) );
+      }
+      //** Be sure our Bootstrap class exists */
+      if( !class_exists( '\UsabilityDynamics\WPR\Bootstrap' ) ) {
+        throw new Exception( __( 'Distributive is broken. Plugin loader is not available. Try to remove and upload plugin again.', 'wp_repository' ) );
+      }
+    } catch( Exception $e ) {
+      $_ud_wp_repository_error = $e->getMessage();
+      return false;
+    }
+    return true;
+  }
 
-	nocache_headers();
+}
 
-	//header( 'Cache-Control:no-cache' );
-	//header( 'Content-Type:application/json' );
-	//header( 'Last-Modified: ' . gmdate('D, d M Y H:i:s', time() .' GMT', true, 200 ) );
+if( !function_exists( 'ud_my_wp_plugin_message' ) ) {
+  /**
+   * Renders admin notes in case there are errors on plugin init
+   *
+   * @author Usability Dynamics, Inc.
+   * @since 0.2.0
+   */
+  function ud_wp_repository_message() {
+    global $_ud_wp_repository_error;
+    if( !empty( $_ud_wp_repository_error ) ) {
+      $message = sprintf( __( '<p><b>%s</b> can not be initialized. %s</p>', 'wp_repository' ), 'WP-Repository', $_ud_wp_repository_error );
+      echo '<div class="error fade" style="padding:11px;">' . $message . '</div>';
+    }
+  }
+  add_action( 'admin_notices', 'ud_wp_repository_message' );
+}
 
-	if( function_exists( 'http_response_code' )) {
-		http_response_code( 200 );
-	} else {
-		header( "HTTP/1.0 200 OK" );
-	}
-
-	// thanks WordPrsss
-	wp_send_json( array(
-		"ok" => true,
-		"includes" => get_repository_includes()
-	) );
-
+if( ud_check_wp_repository() ) {
+  //** Initialize. */
+  ud_get_wp_repository();
 }

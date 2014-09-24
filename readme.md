@@ -1,35 +1,15 @@
-The best project ever.
+### WP-Repository Plugin
 
-## Getting Started
-Install the module with: `npm install usabilitydynamics.com-repository`
+Custom Composer Repository for Wordpress
 
-```javascript
-var usabilitydynamics_com_repository = require('usabilitydynamics.com-repository');
-usabilitydynamics_com_repository.awesome(); // "awesome"
-```
-## Usage
-
-## License
-
-(The MIT License)
-
-Copyright (c) 2013 Usability Dynamics, Inc. &lt;info@usabilitydynamics.com&gt;
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OT
+***
+[![Issues - Bug](https://badge.waffle.io/usabilitydynamics/wp-repository.png?label=bug&title=Bugs)](http://waffle.io/usabilitydynamics/wp-repository)
+[![Issues - Backlog](https://badge.waffle.io/usabilitydynamics/wp-repository.png?label=backlog&title=Backlog)](http://waffle.io/usabilitydynamics/wp-repository/)
+[![Issues - Active](https://badge.waffle.io/usabilitydynamics/wp-repository.png?label=in progress&title=Active)](http://waffle.io/usabilitydynamics/wp-repository/)
+***
+[![Dependency Status](https://gemnasium.com/usabilitydynamics/wp-repository.svg)](https://gemnasium.com/usabilitydynamics/wp-repository)
+[![Scrutinizer Quality](http://img.shields.io/scrutinizer/g/usabilitydynamics/wp-repository.svg)](https://scrutinizer-ci.com/g/usabilitydynamics/wp-repository)
+[![Scrutinizer Coverage](http://img.shields.io/scrutinizer/coverage/g/usabilitydynamics/wp-repository.svg)](https://scrutinizer-ci.com/g/usabilitydynamics/wp-repository)
+[![Packagist Vesion](http://img.shields.io/packagist/v/usabilitydynamics/wp-repository.svg)](https://packagist.org/packages/usabilitydynamics/wp-repository)
+[![CircleCI](https://circleci.com/gh/usabilitydynamics/wp-repository.png)](https://circleci.com/gh/usabilitydynamics/wp-repository)
+***
