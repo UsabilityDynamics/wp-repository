@@ -39,6 +39,7 @@
   "extra": {
     "settings": {
       "defaults": {
+        "repository_path": "",
         "github_access_token": "",
         "organizations": ""
       },
@@ -58,6 +59,11 @@
           }
         },
         "sections": {
+          "general": {
+            "id": "general",
+            "name": "General",
+            "menu": "settings"
+          },
           "github_api": {
             "id": "github_api",
             "name": "Github API Settings",
@@ -65,6 +71,11 @@
           }
         },
         "fields": [
+          {
+            "id": "repository_path",
+            "name": "Path to Repository Files",
+            "section": "general"
+          },
           {
             "id": "github_access_token",
             "name": "Access Token",
