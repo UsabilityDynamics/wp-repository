@@ -119,21 +119,6 @@ module.exports = function build( grunt ) {
 
     shell: {
       /**
-       * Build Distribution
-       */
-      build: {
-        command: function( tag, build_type ) {
-          return [
-            'sh build.sh ' + tag + ' ' + build_type
-          ].join( ' && ' );
-        },
-        options: {
-          encoding: 'utf8',
-          stderr: true,
-          stdout: true
-        }
-      },
-      /**
        * Runs PHPUnit test, creates code coverage and sends it to Scrutinizer
        */
       coverageScrutinizer: {
@@ -169,7 +154,10 @@ module.exports = function build( grunt ) {
         options: {
           stdout: true
         },
-        command: 'composer install --no-dev'
+        command: [
+          "composer install --no-dev --no-interaction",
+          "find ./vendor -name .git -exec rm -rf '{}' \;"
+        ].join( ' && ' ),
       },
       /**
        * Composer Update
@@ -178,7 +166,10 @@ module.exports = function build( grunt ) {
         options: {
           stdout: true
         },
-        command: 'composer update --no-dev --prefer-source'
+        command: [
+          "composer update --no-dev --no-interaction",
+          "find ./vendor -name .git -exec rm -rf '{}' \;"
+        ].join( ' && ' ),
       }
     },
     
@@ -216,11 +207,4 @@ module.exports = function build( grunt ) {
   grunt.registerTask( 'localtest', [ 'phpunit:local' ] );
   grunt.registerTask( 'test', [ 'phpunit:circleci' ] );
   
-  // Build project
-  grunt.registerTask( 'build', 'Run all my build tasks.', function( tag, build_type ) {
-    if ( tag == null ) grunt.warn( 'Build tag must be specified, like build:1.0.0' );
-    if( build_type == null ) build_type = 'production';
-    grunt.task.run( 'shell:build:' + tag + ':' + build_type );
-  });
-
 };

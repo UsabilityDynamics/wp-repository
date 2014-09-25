@@ -1,5 +1,4 @@
 cache
-vendor
 temp
 node_modules
 static/cache
@@ -7,7 +6,7 @@ static/codex
 static/packages
 npm-debug.log
 wp-test-config.php
-composer.lock
+
 
 .git
 .svn
@@ -19,6 +18,7 @@ composer.lock
 *.sublime-project
 *.sublime-workspace
 
+*.git
 *.seed
 *.log
 *.csv
