@@ -16,12 +16,6 @@ test:
   override:
     - grunt testscrutinizer
     #- grunt testcodeclimate
-    
-deployment:
-  production:
-    branch: master 
-    commands:
-      - sh build.sh
       
 notify:
   webhooks:
