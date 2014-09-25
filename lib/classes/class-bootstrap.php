@@ -164,22 +164,22 @@ namespace UsabilityDynamics\WPR {
         $message = __( 'Repository files have been successfully updated.' );
         try {
           if( empty( $this->repository_path ) || !is_dir( $this->repository_path ) ) {
-            throw new Exception( __( 'Repository path is not set or directory does not exist.', $this->domain ) );
+            throw new \Exception( __( 'Repository path is not set or directory does not exist.', $this->domain ) );
           }
           $github_access_token = $this->get( 'github_access_token' );
           $organizations = $this->get( 'organizations' );
           $path = trailingslashit( $this->repository_path );
           if( empty( $github_access_token ) || empty( $organizations ) ) {
-            throw new Exception( __( 'Github Access Token or Organizations option is empty.', $this->domain ) );
+            throw new \Exception( __( 'Github Access Token or Organizations option is empty.', $this->domain ) );
           }
           if( !class_exists( 'UsabilityDynamics\Composer\Github_Updater' ) ) {
-            throw new Exception( sprintf( __( '%s is not found. Be sure WP-Repository plugin is installed correctly.', $this->domain ), 'UsabilityDynamics\Composer\Github_Updater' ) );
+            throw new \Exception( sprintf( __( '%s is not found. Be sure WP-Repository plugin is installed correctly.', $this->domain ), 'UsabilityDynamics\Composer\Github_Updater' ) );
           }
-          $updater = new \UsabilityDynamics\Composer\Github_Updater( $github_access_token, $organizations, $path );
+          $updater = new \UsabilityDynamics\Composer\Github_Updater( $github_access_token, $organizations, $path, false );
           if( !$updater->run() ) {
-            throw new Exception( __( 'There is an error on doing request to Github or with local files permissions. Check your Github API Settings and be sure that defined Repository directory has valid file permissions.', $this->domain ) );
+            throw new \Exception( __( 'There is an error on doing request to Github or with local files permissions. Check your Github API Settings and be sure that defined Repository directory has valid file permissions.', $this->domain ) );
           } 
-        } catch ( Exception $e ) {
+        } catch ( \Exception $e ) {
           $success = false;
           $message = sprintf( __( 'Could not update repository files. %s', $this->domain ), $e->getMessage() );
         }
