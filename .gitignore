@@ -3,7 +3,8 @@ temp
 node_modules
 static/cache
 static/codex
-static/packages
+static/packages/cache
+static/packages/*.json
 npm-debug.log
 wp-test-config.php
 composer.lock
