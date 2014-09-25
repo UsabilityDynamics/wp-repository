@@ -1,12 +1,12 @@
 cache
-vendor
 temp
 node_modules
 static/cache
 static/codex
+static/packages
 npm-debug.log
 wp-test-config.php
-composer.lock
+vendor/*/.svn
 
 .git
 .svn

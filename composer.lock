@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bc04d563097c390581ce1cf25bed1657",
+    "hash": "9a889fd6c4643f3fa8b49d9749ec9668",
     "packages": [
         {
             "name": "guzzle/guzzle",
@@ -234,7 +234,7 @@
                 "knplabs/github-api": "1.2.6"
             },
             "type": "library",
-            "time": "2014-09-10 03:51:48"
+            "time": "2014-09-25 14:32:22"
         },
         {
             "name": "usabilitydynamics/lib-settings",
@@ -272,7 +272,7 @@
                     "lib"
                 ]
             },
-            "time": "2014-06-02 15:22:26"
+            "time": "2014-09-24 17:21:21"
         },
         {
             "name": "usabilitydynamics/lib-ui",
@@ -310,7 +310,7 @@
                     "lib"
                 ]
             },
-            "time": "2014-07-23 11:51:09"
+            "time": "2014-09-25 14:23:50"
         },
         {
             "name": "usabilitydynamics/lib-utility",
@@ -378,7 +378,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2014-09-24 12:01:11"
+            "time": "2014-09-25 14:35:15"
         }
     ],
     "packages-dev": null,
