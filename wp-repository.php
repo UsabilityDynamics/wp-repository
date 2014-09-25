@@ -4,7 +4,7 @@
  * Plugin URI: https://usabilitydynamics.com
  * Description: Custom Composer Repository for Wordpress
  * Author: Usability Dynamics, Inc.
- * Version: 0.2.0
+ * Version: 0.2.1
  * Text Domain: wp_repository
  * Author URI: http://usabilitydynamics.com
  *
