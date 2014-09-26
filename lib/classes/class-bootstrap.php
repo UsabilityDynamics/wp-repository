@@ -151,7 +151,8 @@ namespace UsabilityDynamics\WPR {
             $field[ 'desc' ] .= sprintf( __( 'If empty, the following path is being used: <b>%s</b>', $this->domain ), $this->default_repository_path ) . '</br>';
           }
           $field[ 'desc' ] .= sprintf( __( 'Path also can be defined via environment variable <b>%s</b> or constant with the same name', $this->domain ), 'WP_REPOSITORY_PATH' ) . '</br>';
-          $field[ 'desc' ] .= sprintf( __( 'Path\'s defining priorities: 1) current option field, 2) constant, 3) environment variable, 4) default path <b>%s</b>', $this->domain ), $this->path( 'static/packages', 'dir' ) );
+          $field[ 'desc' ] .= sprintf( __( 'Path\'s defining priorities: 1) current option field, 2) constant, 3) environment variable, 4) default path <b>%s</b>', $this->domain ), $this->path( 'static/packages', 'dir' ) ) . '</br>';
+          $field[ 'desc' ] .= '<b>' . __( 'Note: path must goes to current WordPress directory installation to prevent invalid packages links!', $this->domain ) . '</b>';
         }
         return $field;
       }
@@ -159,43 +160,17 @@ namespace UsabilityDynamics\WPR {
       /**
        *
        */
-      public function check_repository_updates() {
-        $success = true;
-        $message = __( 'Repository files have been successfully updated.' );
-        try {
-          if( empty( $this->repository_path ) || !is_dir( $this->repository_path ) ) {
-            throw new \Exception( __( 'Repository path is not set or directory does not exist.', $this->domain ) );
-          }
-          $github_access_token = $this->get( 'github_access_token' );
-          $organizations = $this->get( 'organizations' );
-          $path = trailingslashit( $this->repository_path );
-          if( empty( $github_access_token ) || empty( $organizations ) ) {
-            throw new \Exception( __( 'Github Access Token or Organizations option is empty.', $this->domain ) );
-          }
-          if( !class_exists( 'UsabilityDynamics\Composer\Github_Updater' ) ) {
-            throw new \Exception( sprintf( __( '%s is not found. Be sure WP-Repository plugin is installed correctly.', $this->domain ), 'UsabilityDynamics\Composer\Github_Updater' ) );
-          }
-          $updater = new \UsabilityDynamics\Composer\Github_Updater( $github_access_token, $organizations, $path, false );
-          if( !$updater->run() ) {
-            throw new \Exception( __( 'There is an error on doing request to Github or with local files permissions. Check your Github API Settings and be sure that defined Repository directory has valid file permissions.', $this->domain ) );
-          } 
-        } catch ( \Exception $e ) {
-          $success = false;
-          $message = sprintf( __( 'Could not update repository files. %s', $this->domain ), $e->getMessage() );
-        }
-        wp_send_json( array(
-          "ok" => $success,
-          "message" => $message,
-        ) );
-      }
-      
-      /**
-       *
-       */
       public function maybe_render_updater() {
+        $repository_path = $this->repository_path;
         $github_access_token = $this->get( 'github_access_token' );
         $organizations = $this->get( 'organizations' );
-        if( !empty( $github_access_token ) && !empty( $organizations ) ) {
+        if( !empty( $github_access_token ) && !empty( $organizations ) && !empty( $repository_path ) ) {
+          if( !is_array( $organizations ) ) {
+            $organizations = explode( ',', $organizations );
+            foreach( $organizations as $k => $v ) {
+              $organizations[ $k ] = trim( $v );
+            }
+          }
           include_once( $this->path( 'static/views/admin.updater.php', 'dir' ) );
         }
       }
@@ -209,7 +184,8 @@ namespace UsabilityDynamics\WPR {
         if( !empty( $github_access_token ) && !empty( $organizations ) ) {
           wp_enqueue_script( 'wp-repository-settings', $this->path( 'static/scripts/admin.settings.js' ), array( 'jquery' ) );
           wp_localize_script( 'wp-repository-settings', '_ud_wpr_settings', array(
-            'ajax_url' => admin_url( 'admin-ajax.php' ),
+            //'ajax_url' => admin_url( 'admin-ajax.php' ),
+            'ajax_url' => $this->path( 'files-updater.php' ),
           ) );
         }
       }
@@ -226,6 +202,7 @@ namespace UsabilityDynamics\WPR {
           'store'  => 'site_options'
         ));
         $data = $settings->get();
+        //echo "<pre>"; print_r( $data ); echo "</pre>"; die();
         $data = is_array( $data ) ? $data : array();
         //** Merge with default data. */
         $data = \UsabilityDynamics\Utility::extend( $this->get_schema( 'extra.settings.defaults' ), $data, array(
@@ -249,7 +226,6 @@ namespace UsabilityDynamics\WPR {
           return false;
         }
         
-        add_action( 'wp_ajax_wprepository_check_updates', array( $this, 'check_repository_updates' ) );
         add_filter( "ud:ui:field", array( $this, 'parse_ui_field' ) );
         add_action( 'ud:ui:settings:view:tab:settings:top', array( $this, 'maybe_render_updater' ) );
         add_action( 'ud:ui:settings:render', array( $this, 'admin_enqueue_scripts' ) );
