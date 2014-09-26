@@ -101,8 +101,20 @@ namespace UsabilityDynamics\WPR {
         
         $path = trailingslashit( $this->repository_path );
         
-        $url_path = str_replace( wp_normalize_path( ABSPATH ), '', wp_normalize_path( $path ) );
+        $url_path = str_ireplace( wp_normalize_path( ABSPATH ), '', wp_normalize_path( $path ) );
         $url_path = '/' . ltrim( $url_path, '/\\' );
+        
+        $su = site_url();
+        $hu = home_url();
+        if( $hu != $su && strlen( $su ) > strlen( $hu ) ) {
+          $diff = trim( str_ireplace( $hu, '', $su ), '/\\' );
+        } elseif ( $hu != $su && strlen( $su ) < strlen( $hu ) ) {
+          $diff = trim( str_ireplace( $su, '', $hu ), '/\\' );
+        }
+        
+        if( !empty( $diff ) ) {
+          $url_path = '/' . $diff . $url_path;
+        }
         
         foreach ( glob( $path . "*.json" ) as $filename ) {
           $_list[ $url_path . basename( $filename ) ] = array(
