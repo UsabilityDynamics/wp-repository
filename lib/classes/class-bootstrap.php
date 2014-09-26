@@ -100,9 +100,10 @@ namespace UsabilityDynamics\WPR {
         }
         
         $path = trailingslashit( $this->repository_path );
-        $url_path = plugin_dir_url( str_ireplace( '/www/', '/public_html/', $path ) . 'packages.json' );
-        $url_path = str_ireplace( home_url(), '', $url_path );
-
+        
+        $url_path = str_replace( wp_normalize_path( ABSPATH ), '', wp_normalize_path( $path ) );
+        $url_path = '/' . ltrim( $url_path, '/\\' );
+        
         foreach ( glob( $path . "*.json" ) as $filename ) {
           $_list[ $url_path . basename( $filename ) ] = array(
             'sha1' => sha1( filemtime( $filename ) ),
