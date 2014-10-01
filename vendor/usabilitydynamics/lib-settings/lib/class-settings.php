@@ -434,7 +434,7 @@ namespace UsabilityDynamics {
 
           break;
 
-          case 'site_options':
+          case 'site_meta':
 
             $_value = json_encode( $_data, JSON_FORCE_OBJECT );
 
@@ -471,12 +471,9 @@ namespace UsabilityDynamics {
       public function flush() {
 
         switch( $this->_store ) {
+
           case 'options':
             if( function_exists( 'delete_option' ) ) {
-              delete_option( $this->_key );
-            }
-          case 'site_options':
-            if( function_exists( 'delete_site_option' ) ) {
               delete_option( $this->_key );
             }
           break;
@@ -541,14 +538,9 @@ namespace UsabilityDynamics {
 
           // WordPress Site Options.
           case 'options':
-          case 'site_options':
 
             // Load from options.
-            if( $this->_store == 'site_options' ) {
-              $_value = \get_site_option( $this->_key );
-            } else {
-              $_value = \get_option( $this->_key );
-            }
+            $_value = \get_option( $this->_key );
 
             // If already an array it must have been serialized
             if( gettype( $_value ) === 'array' ) {

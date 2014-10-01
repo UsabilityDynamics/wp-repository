@@ -38,8 +38,6 @@ namespace UsabilityDynamics\UI {
        */
       public function __construct( $settings = null, $schema = null ) {
         
-        //echo "<pre>"; print_r( $schema ); echo "</pre>"; die();
-        
         //** Break if settings var is incorrect */
         if( $settings && !is_subclass_of( $settings, 'UsabilityDynamics\Settings' ) ) {
 
@@ -84,7 +82,7 @@ namespace UsabilityDynamics\UI {
         $capability = 'manage_options';
         
         // Maybe add main menu
-        if ( isset( $main_menu ) && is_string( $main_menu ) ) {
+        if ( $main_menu && is_string( $main_menu ) ) {
           if ( !isset( $submenu[ $main_menu ] ) ) {
             // Menu must exists if we pass the string.
             return false;
@@ -97,7 +95,7 @@ namespace UsabilityDynamics\UI {
               break;
             }
           }
-        }  elseif ( isset( $main_menu ) && is_array( $main_menu ) ) {
+        }  elseif ( $main_menu && is_array( $main_menu ) ) {
           extract( $main_menu = wp_parse_args( $main_menu, array(
             'page_title' => '',
             'menu_title' => '',
@@ -108,10 +106,12 @@ namespace UsabilityDynamics\UI {
           ) ) );
           add_menu_page( $page_title, $menu_title, $capability, $menu_slug, array( $this, 'render' ), $icon_url, $position );
           $parent_slug = $menu_slug;
+        } else {
+          return false;
         }
         
         //Maybe add secondary menu
-        if ( is_array( $secondary_menu ) ) {
+        if ( $main_menu && is_array( $secondary_menu ) && isset( $parent_slug ) ) {
           extract( $secondary_menu = wp_parse_args( $secondary_menu, array(
             'parent_slug' => $parent_slug,
             'page_title' => '',
@@ -119,10 +119,8 @@ namespace UsabilityDynamics\UI {
             'capability' => $capability,
             'menu_slug' => '',
           ) ) );
-          if( isset( $parent_slug ) ) {
-            $id = add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, array( $this, 'render' ) );
-            add_action( 'load-' . $id, array( $this, 'request' ) );
-          }
+          $id = add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, array( $this, 'render' ) );
+          add_action( 'load-' . $id, array( $this, 'request' ) );
         }
         
       }
@@ -168,7 +166,6 @@ namespace UsabilityDynamics\UI {
        * 
        */
       public function render() {
-        
         wp_enqueue_script( 'jquery-ui-tabs' );
         wp_enqueue_script( 'accordion' );
         
@@ -183,8 +180,6 @@ namespace UsabilityDynamics\UI {
         foreach ( $this->get_fields() as $field ) {
           $field->admin_enqueue_scripts();
         }
-        
-        do_action( 'ud:ui:settings:render' );
         
         $this->get_template_part( 'main' );
       }
@@ -299,10 +294,8 @@ namespace UsabilityDynamics\UI {
           $field[ 'value' ] = $this->get( $field[ 'id' ] );
           $field[ 'field_name' ] = str_replace( '.', '|', $field[ 'id' ] );
           $field[ 'id' ] = sanitize_key( str_replace( '.', '_', $field[ 'id' ] ) );
-          $field = apply_filters( "ud:ui:field", $field );
           
           $field = call_user_func( array( $this->get_field_class_name( $field ), 'init' ), $field );
-          
           if( !$field ) {
             return false;
           }

@@ -7,12 +7,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/EventDispatcher.git",
-            "reference": "bf53697836343c9bc5663649f5f094ede73c2d5c"
+            "reference": "93d237c3da7565a9ad2b4b6a74af73f4e3c0c305"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/bf53697836343c9bc5663649f5f094ede73c2d5c",
-            "reference": "bf53697836343c9bc5663649f5f094ede73c2d5c",
+            "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/93d237c3da7565a9ad2b4b6a74af73f4e3c0c305",
+            "reference": "93d237c3da7565a9ad2b4b6a74af73f4e3c0c305",
             "shasum": ""
         },
         "require": {
@@ -21,21 +21,22 @@
         "require-dev": {
             "psr/log": "~1.0",
             "symfony/config": "~2.0",
-            "symfony/dependency-injection": "~2.0",
+            "symfony/dependency-injection": "~2.6",
+            "symfony/expression-language": "~2.6",
             "symfony/stopwatch": "~2.2"
         },
         "suggest": {
             "symfony/dependency-injection": "",
             "symfony/http-kernel": ""
         },
-        "time": "2014-09-22 11:59:59",
+        "time": "2014-10-01 05:53:11",
         "type": "library",
         "extra": {
             "branch-alias": {
                 "dev-master": "2.6-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-0": {
                 "Symfony\\Component\\EventDispatcher\\": ""
@@ -118,7 +119,7 @@
                 "dev-master": "3.9-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-0": {
                 "Guzzle": "src/",
@@ -185,7 +186,7 @@
                 "dev-master": "1.3.x-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-0": {
                 "Github\\": "lib/"
@@ -231,10 +232,17 @@
             "shasum": null
         },
         "require": {
-            "knplabs/github-api": "1.2.6"
+            "knplabs/github-api": "1.2.6",
+            "php": ">=5.3"
         },
         "type": "library",
-        "installation-source": "source"
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "lib/classes"
+            ]
+        },
+        "homepage": "https://usabilitydynamics.com"
     },
     {
         "name": "usabilitydynamics/lib-utility",
@@ -264,7 +272,7 @@
                 ]
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "classmap": [
                 "lib"
@@ -291,7 +299,7 @@
             "usabilitydynamics/lib-utility": "master"
         },
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "classmap": [
                 "lib/classes"
@@ -338,7 +346,7 @@
                 ]
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "classmap": [
                 "lib"
@@ -377,7 +385,7 @@
                 ]
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "classmap": [
                 "lib"
