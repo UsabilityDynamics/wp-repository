@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'UsabilityDynamics\\Composer\\Github_Updater' => $vendorDir . '/usabilitydynamics/composer-github-updater/lib/classes/class-github-updater.php',
     'UsabilityDynamics\\Job' => $vendorDir . '/usabilitydynamics/lib-utility/lib/class-job.php',
     'UsabilityDynamics\\Loader' => $vendorDir . '/usabilitydynamics/lib-utility/lib/class-loader.php',
     'UsabilityDynamics\\Settings' => $vendorDir . '/usabilitydynamics/lib-settings/lib/class-settings.php',
@@ -29,4 +28,5 @@ return array(
     'UsabilityDynamics\\WP\\TGM_Bulk_Installer' => $vendorDir . '/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php',
     'UsabilityDynamics\\WP\\TGM_Bulk_Installer_Skin' => $vendorDir . '/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php',
     'UsabilityDynamics\\WP\\TGM_Plugin_Activation' => $vendorDir . '/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php',
+    'UsabilityDynamics\\Composer\\Github_Updater' => $vendorDir . '/usabilitydynamics/composer-github-updater/lib/classes/class-github-updater.php',
 );

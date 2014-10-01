@@ -20,10 +20,6 @@ if( file_exists( '/sites/_includes/loader.php' ) ){
   require_once( '/sites/_includes/loader.php' );
 }
 
-if( isset( $_REQUEST[ 'nocache' ] ) ){
-  shell_exec( 'rm -rf ' . $config[ 'client' ] );
-}
-
 $cache = isset( $_REQUEST[ 'nocache' ] ) ? false : true;
 $updater = new \UsabilityDynamics\Composer\Github_Updater( $github_access_token, $organizations, '../', $cache );
 $updater->run();
