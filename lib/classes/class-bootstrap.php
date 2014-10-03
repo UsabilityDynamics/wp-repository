@@ -42,20 +42,18 @@ namespace UsabilityDynamics\WPR {
         //** Init Settings */
         $this->settings = $this->define_settings();
         
-        $this->repository_path = $this->get( 'repository_path' );
-        
-        if( defined( 'WP_REPOSITORY_PATH' ) ) {
-          $this->default_repository_path = WP_REPOSITORY_PATH;
+        if( function_exists( 'getenv' ) && getenv( 'WP_REPOSITORY_PATH' ) ) {
+          $this->default_repository_path = getenv( 'WP_REPOSITORY_PATH' );
         } else {
-          if( function_exists( 'getenv' ) && getenv( 'WP_REPOSITORY_PATH' ) ) {
-            $this->default_repository_path = getenv( 'WP_REPOSITORY_PATH' );
-          } else {
-            $this->default_repository_path = $this->path( 'static/packages', 'dir' );
-          }
+          $this->default_repository_path = $this->path( 'static/packages', 'dir' );
         }
         
+        $this->repository_path = defined( 'WP_REPOSITORY_PATH' ) ? WP_REPOSITORY_PATH : false;
         if( empty( $this->repository_path ) ) {
-          $this->repository_path = $this->default_repository_path;
+          $this->repository_path = $this->get( 'repository_path' );
+          if( empty( $this->repository_path ) ) {
+            $this->repository_path = $this->default_repository_path;  
+          }
         }
         
         //** Init UI */
@@ -164,7 +162,7 @@ namespace UsabilityDynamics\WPR {
             $field[ 'desc' ] .= sprintf( __( 'If empty, the following path is being used: <b>%s</b>', $this->domain ), $this->default_repository_path ) . '</br>';
           }
           $field[ 'desc' ] .= sprintf( __( 'Path also can be defined via environment variable <b>%s</b> or constant with the same name', $this->domain ), 'WP_REPOSITORY_PATH' ) . '</br>';
-          $field[ 'desc' ] .= sprintf( __( 'Path\'s defining priorities: 1) current option field, 2) constant, 3) environment variable, 4) default path <b>%s</b>', $this->domain ), $this->path( 'static/packages', 'dir' ) ) . '</br>';
+          $field[ 'desc' ] .= sprintf( __( 'Path\'s defining priorities: 1) constant, 2) current option field, 3) environment variable, 4) default path <b>%s</b>', $this->domain ), wp_normalize_path( $this->path( 'static/packages', 'dir' ) ) ) . '</br>';
           $field[ 'desc' ] .= '<b>' . __( 'Note: path must goes to current WordPress directory installation to prevent invalid packages links!', $this->domain ) . '</b>';
         }
         return $field;
@@ -197,8 +195,10 @@ namespace UsabilityDynamics\WPR {
         if( !empty( $github_access_token ) && !empty( $organizations ) ) {
           wp_enqueue_script( 'wp-repository-settings', $this->path( 'static/scripts/admin.settings.js' ), array( 'jquery' ) );
           wp_localize_script( 'wp-repository-settings', '_ud_wpr_settings', array(
-            //'ajax_url' => admin_url( 'admin-ajax.php' ),
             'ajax_url' => $this->path( 'files-updater.php' ),
+            'is_defined_constant' => defined( 'WP_REPOSITORY_PATH' ) ? true : false,
+            'current_path' => $this->repository_path,
+            'default_path' => $this->default_repository_path,
           ) );
         }
       }
