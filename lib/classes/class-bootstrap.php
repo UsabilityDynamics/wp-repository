@@ -245,7 +245,11 @@ namespace UsabilityDynamics\WPR {
         add_filter( "ud:ui:field", array( $this, 'parse_ui_field' ) );
         add_action( 'ud:ui:settings:view:tab:settings:top', array( $this, 'maybe_render_updater' ) );
         add_action( 'ud:ui:settings:render', array( $this, 'admin_enqueue_scripts' ) );
-        return new \UsabilityDynamics\UI\Settings( $this->settings, $this->get_schema( 'extra.settings.ui' ) );
+
+	      if( class_exists( 'UsabilityDynamics\UI\Settings' ) ) {
+		      return new \UsabilityDynamics\UI\Settings( $this->settings, $this->get_schema( 'extra.settings.ui' ) );
+	      }
+
       }
       
       /**
