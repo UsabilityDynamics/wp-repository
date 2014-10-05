@@ -17,6 +17,7 @@
   ],
   "require": {
     "php": ">=5.3",
+    "composer/installers": "v1.0.18",
     "usabilitydynamics/lib-wp-bootstrap": "~1.0.2",
     "usabilitydynamics/lib-ui": ">=0.2.1",
     "usabilitydynamics/lib-settings": "~0.2.2"

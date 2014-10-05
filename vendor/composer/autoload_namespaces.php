@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'JsonSchema' => array($vendorDir . '/justinrainbow/json-schema/src'),
+    'Composer\\Installers\\' => array($vendorDir . '/composer/installers/src'),
 );
