@@ -14,11 +14,11 @@ namespace UsabilityDynamics\WP {
      * Bootstrap the plugin in WordPress.
      *
      * @class Bootstrap
-     * @author: potanin@UD
+     * @author: peshkov@UD
      */
     class Bootstrap extends Scaffold {
     
-      public static $version = '1.0.1';
+      public static $version = '1.0.3';
     
       /**
        * Schemas
@@ -41,12 +41,12 @@ namespace UsabilityDynamics\WP {
       /**
        * Settings
        *
-       * @private
+       * @public
        * @static
        * @property $settings
        * @type \UsabilityDynamics\Settings object
        */
-      private $settings = null;
+      public $settings = null;
       
       /**
        * Constructor
@@ -64,13 +64,47 @@ namespace UsabilityDynamics\WP {
         $this->plugins_dependencies();
         //** Maybe define license client */
         $this->define_license_client();
+        //** Set install/upgrade pages if needed */
+        $this->define_splash_pages();
         //** Load text domain */
         add_action( 'plugins_loaded', array( $this, 'load_textdomain' ), 1 );
         //** Add additional conditions on 'plugins_loaded' action before we start plugin initialization. */
         add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), 10 );
         //** Initialize plugin here. All plugin actions must be added on this step */
         add_action( 'plugins_loaded', array( $this, 'init' ), 100 );
+        
+        //** Maybe need to show UD splash page. Used static functions intentionaly. */
+        if ( !has_action( 'admin_init', array( Dashboard::instance(), 'maybe_ud_splash_page' ) ) ) {
+          add_action( 'admin_init', array( Dashboard::instance(), 'maybe_ud_splash_page' ) );
+        }
+        
+        if ( !has_action( 'admin_menu', array( Dashboard::instance(), 'add_ud_splash_page') ) ) {
+          add_action( 'admin_menu', array( Dashboard::instance(), 'add_ud_splash_page') );
+        }
+
         $this->boot();
+      }
+
+	    /**
+	     * Returns absolute DIR or URL path
+	     *
+	     * @since 1.0.2
+	     *
+	     * @param $short_path
+	     * @param string $type
+	     *
+	     * @return bool|string
+	     */
+      public function path( $short_path, $type = 'url' ) {
+        switch( $type ) {
+          case 'url':
+            return $this->plugin_url . ltrim( $short_path, '/\\' );
+            break;
+          case 'dir':
+            return dirname( $this->plugin_file ) . '/' . ltrim( $short_path, '/\\' );
+            break;
+        }
+        return false;
       }
       
       /**
@@ -103,7 +137,7 @@ namespace UsabilityDynamics\WP {
        * @author peshkov@UD
        */
       public function load_textdomain() {
-        load_plugin_textdomain( $this->domain, false, dirname( $this->plugin_file ) . '/static/languages/' ); 
+        load_plugin_textdomain( $this->domain, false, basename( $this->plugin_file, '.php' ) . '/static/languages/' );
       }
       
       /**
@@ -202,7 +236,7 @@ namespace UsabilityDynamics\WP {
        */
       public function set( $key = null, $value = null ) {
         if( !is_object( $this->settings ) || !is_callable( array( $this->settings, 'set' ) ) ) {
-          return $value;
+          return false;
         }
         return $this->settings->set( $key, $value );
       }
@@ -215,8 +249,8 @@ namespace UsabilityDynamics\WP {
        * @return \UsabilityDynamics\type
        */
       public function get( $key = null, $default = null ) {
-        if( !is_object( $this->settings ) || !is_callable( array( $this->settings, 'set' ) ) ) {
-          return $value;
+        if( !is_object( $this->settings ) || !is_callable( array( $this->settings, 'get' ) ) ) {
+          return $default;
         }
         return $this->settings->get( $key, $default );
       }
@@ -372,6 +406,7 @@ namespace UsabilityDynamics\WP {
               foreach( $classes as $class => $v ) {
                 if( !class_exists( $class ) ) {
                   $this->errors->add( sprintf( __( 'Module <b>%s</b> is not installed or the version is old, class <b>%s</b> does not exist.', $this->domain ), $module, $class ) );
+                  continue;
                 }
                 if ( '*' != trim( $v ) && ( !property_exists( $class, 'version' ) || $class::$version < $v ) ) {
                   $this->errors->add( sprintf( __( 'Module <b>%s</b> should be updated to the latest version, class <b>%s</b> must have version <b>%s</b> or higher.', $this->domain ), $module, $class, $v ) );
@@ -382,6 +417,68 @@ namespace UsabilityDynamics\WP {
         }
       }
       
+      /**
+       * Define splash pages for plugins if needed.
+       * @return boolean
+       * @author korotkov@ud
+       */
+      public function define_splash_pages() {
+        
+        //** If not defined in schemas or not determined - skip */
+        if ( !$_splashes = $this->get_schema( 'extra.splashes' ) ) {
+          return false;
+        }
+        
+        $_page = false;
+        
+        //** Determine what to show depending on version installed */
+        $_installed_version = get_option( $this->plugin . '-splash-version', 0 );
+        
+        //** Just installed */
+        if ( !$_installed_version ) {
+          $_page = 'install';
+        
+        //** Upgraded */
+        } elseif ( version_compare( $_installed_version,  $this->args['version'] ) == -1 ) {
+          $_page = 'upgrade';
+          
+        //** In other case do not do this */
+        } else {
+          return false;
+        }
+        
+        //** Abort if no files exist */
+        if ( !file_exists( $this->path($_splashes[$_page], 'dir') ) ) {
+          return false;
+        }
+          
+        //** Push data to temp transient */
+        $_current_pages_to_show = get_transient( Dashboard::instance()->transient_key );
+
+        //** If empty - create */
+        if ( !$_current_pages_to_show ) {
+          set_transient( Dashboard::instance()->transient_key, array(
+            $this->plugin => array(
+              'name' => $this->name,
+              'content' => $this->path($_splashes[$_page], 'dir'),
+              'version' => $this->args['version']
+            )
+          ), 30 );
+
+        //** If not empty - update */
+        } else {
+          $_current_pages_to_show[$this->plugin] = array(
+            'name' => $this->name,
+            'content' => $this->path($_splashes[$_page], 'dir'),
+            'version' => $this->args['version']
+          );
+          set_transient( Dashboard::instance()->transient_key, $_current_pages_to_show, 30 ); 
+        }
+        
+        set_transient( Dashboard::instance()->need_splash_key, Dashboard::instance()->transient_key, 30 );
+
+      }
+    
     }
   
   }

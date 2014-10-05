@@ -17,12 +17,11 @@
   ],
   "require": {
     "php": ">=5.3",
-    "usabilitydynamics/lib-wp-bootstrap": "~1.0.1",
+    "usabilitydynamics/lib-wp-bootstrap": "~1.0.2",
     "usabilitydynamics/lib-ui": "~0.2",
     "usabilitydynamics/lib-settings": "~0.2.2"
   },
-  "require-dev": {},
-  "require-disabled": {
+  "require-dev": {
     "usabilitydynamics/lib-wp-phpunit": "master",
     "codeclimate/php-test-reporter": "dev-master",
     "usabilitydynamics/composer-github-updater": "master"

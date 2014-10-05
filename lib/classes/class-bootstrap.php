@@ -42,9 +42,11 @@ namespace UsabilityDynamics\WPR {
         //** Init Settings */
         $this->settings = $this->define_settings();
         
-        $this->default_repository_path = $this->path( 'static/packages', 'dir' );        
+        $this->default_repository_path = $this->path( 'static/packages', 'dir' );
+
         $this->repository_path = defined( 'WP_REPOSITORY_PATH' ) ? WP_REPOSITORY_PATH : false;
-        if( empty( $this->repository_path ) ) {
+
+	      if( empty( $this->repository_path ) ) {
           if( function_exists( 'getenv' ) && getenv( 'WP_REPOSITORY_PATH' ) ) {
             $this->repository_path = getenv( 'WP_REPOSITORY_PATH' );
             if( !defined( 'WP_REPOSITORY_PATH' ) ) {

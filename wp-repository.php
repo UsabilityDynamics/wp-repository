@@ -14,12 +14,17 @@
 
 if( !function_exists( 'ud_get_wp_repository' ) ) {
 
-  /**
-   * Returns  Instance
-   *
-   * @author Usability Dynamics, Inc.
-   * @since 0.2.0
-   */
+	/**
+	 * Returns  Instance
+	 *
+	 * @author Usability Dynamics, Inc.
+	 * @since 0.2.0
+	 *
+	 * @param bool $key
+	 * @param null $default
+	 *
+	 * @return
+	 */
   function ud_get_wp_repository( $key = false, $default = null ) {
     $instance = \UsabilityDynamics\WPR\Bootstrap::get_instance();
     return $key ? $instance->get( $key, $default ) : $instance;
@@ -36,6 +41,7 @@ if( !function_exists( 'ud_check_wp_repository' ) ) {
    */
   function ud_check_wp_repository() {
     global $_ud_wp_repository_error;
+
     try {
       //** Be sure composer.json exists */
       $file = dirname( __FILE__ ) . '/composer.json';
@@ -58,10 +64,12 @@ if( !function_exists( 'ud_check_wp_repository' ) ) {
       } else {
         throw new Exception( sprintf( __( 'Distributive is broken. %s file is missed. Try to remove and upload plugin again.', 'wp_repository' ), dirname( __FILE__ ) . '/vendor/autoload.php' ) );
       }
+
       //** Be sure our Bootstrap class exists */
       if( !class_exists( '\UsabilityDynamics\WPR\Bootstrap' ) ) {
         throw new Exception( __( 'Distributive is broken. Plugin loader is not available. Try to remove and upload plugin again.', 'wp_repository' ) );
       }
+
     } catch( Exception $e ) {
       $_ud_wp_repository_error = $e->getMessage();
       return false;
