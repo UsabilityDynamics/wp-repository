@@ -24,7 +24,8 @@ namespace UsabilityDynamics\WPR {
        * Repository Path
        */
       protected $repository_path = null;
-      protected $default_repository_path = null;
+
+	    protected $default_repository_path = null;
       
       /**
        * Instantaite class.
@@ -212,19 +213,23 @@ namespace UsabilityDynamics\WPR {
        * @return object UsabilityDynamics\Settings
        */
       private function define_settings() {
+
         //** Initialize Settings. */
         $settings = new \UsabilityDynamics\Settings( array(
           'key'  => 'wp_repository_settings',
           'store'  => 'site_options'
         ));
+
         $data = $settings->get();
-        //echo "<pre>"; print_r( $data ); echo "</pre>"; die();
+
         $data = is_array( $data ) ? $data : array();
+
         //** Merge with default data. */
         $data = \UsabilityDynamics\Utility::extend( $this->get_schema( 'extra.settings.defaults' ), $data, array(
           'version' => $this->version,
           'domain' => $this->domain,
         ) );
+
         if( !empty( $data ) ) {
           $settings->set( $data );
         }
