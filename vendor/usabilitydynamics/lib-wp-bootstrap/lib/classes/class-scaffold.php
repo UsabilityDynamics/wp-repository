@@ -27,15 +27,6 @@ namespace UsabilityDynamics\WP {
        * @var array
        */
       public $plugin_file = false;
-      
-      /**
-       * Plugin URL
-       *
-       * @public
-       * @property plugin_path
-       * @var array
-       */
-      public $plugin_url = false;
     
       /**
        * Plugin ( Theme ) Name.
@@ -84,7 +75,6 @@ namespace UsabilityDynamics\WP {
         $this->plugin = sanitize_key( $this->name );
         $this->domain = isset( $args[ 'domain' ] ) ? trim( $args[ 'domain' ] ) : false;
         $this->plugin_file = isset( $args[ 'plugin_file' ] ) ? trim( $args[ 'plugin_file' ] ) : false;
-        $this->plugin_url = isset( $args[ 'plugin_url' ] ) ? trim( $args[ 'plugin_url' ] ) : false;
         $this->args = $args;
       }
       

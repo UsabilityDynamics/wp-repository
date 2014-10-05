@@ -24,8 +24,10 @@ install:
 
 # Build for repository commit
 release:
+	@echo Releasing $(NAME).
 	make install
 	rm -rf vendor/composer/installers
+	git rm --cached -r --ignore-unmatch vendor/usabilitydynamics/composer-github-updater
 	git rm --cached -r --ignore-unmatch vendor/usabilitydynamics/lib-settings
 	git rm --cached -r --ignore-unmatch vendor/usabilitydynamics/lib-ui
 	git rm --cached -r --ignore-unmatch vendor/usabilitydynamics/lib-utility

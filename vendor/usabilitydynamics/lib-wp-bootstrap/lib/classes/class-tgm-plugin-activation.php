@@ -63,11 +63,6 @@ namespace UsabilityDynamics\WP {
            * @var array
            */
           public $plugins = array();
-          
-          /**
-           *
-           */
-          public $referrers = array();
 
           /**
            * Name of the querystring argument for the admin page.
@@ -503,7 +498,7 @@ namespace UsabilityDynamics\WP {
                   $source = ( 'upload' == $type ) ? $this->default_path . $plugin['source'] : $plugin['source'];
 
                   // Create a new instance of Plugin_Upgrader.
-                  $upgrader = new \Plugin_Upgrader( $skin = new \Plugin_Installer_Skin( compact( 'type', 'title', 'url', 'nonce', 'plugin', 'api' ) ) );
+                  $upgrader = new Plugin_Upgrader( $skin = new Plugin_Installer_Skin( compact( 'type', 'title', 'url', 'nonce', 'plugin', 'api' ) ) );
 
                   // Perform the action and install the plugin from the $source urldecode().
                   $upgrader->install( $source );
@@ -597,6 +592,12 @@ namespace UsabilityDynamics\WP {
            * @return null Returns early if we're on the Install page.
            */
           public function notices( $referrer = false ) {
+
+              //** Remove nag on the install page. */
+              if ( $this->is_tgmpa_page() || empty( $referrer ) ) {
+                  return array();
+              }
+              
               //** Check if get_plugins() function exists. This is required on the front end of the */
               //** site, since it is in a file that is normally only loaded in the admin. */
               if ( ! function_exists( 'get_plugins' ) ) {
@@ -618,12 +619,11 @@ namespace UsabilityDynamics\WP {
               $m_activate_link       = false;   // Set to false, change to true in loop if conditions exist, used for action link 'activate'.
               $m_activate_link_count = 0;       // Used to determine plurality of activate action link text.
               
-              foreach ( $this->referrers as $plugin ) {
+              foreach ( $this->plugins as $plugin ) {
                   //** We must return only notices for referrer */
-                  if( empty( $referrer ) || $referrer != $plugin[ '_referrer' ] || !isset( $this->plugins[ $plugin[ 'slug' ] ] ) ) {
+                  if( empty( $referrer ) &&  $referrer != $plugin[ '_referrer' ] ) {
                     continue;
                   }
-                  $plugin[ 'file_path' ] = $this->plugins[ $plugin[ 'slug' ] ][ 'file_path' ];
                   // If the plugin is installed and active, check for minimum version argument before moving forward.
                   if ( is_plugin_active( $plugin['file_path'] ) ) {
                       // A minimum version has been specified.
@@ -698,6 +698,8 @@ namespace UsabilityDynamics\WP {
               // If we have notices to display, we move forward.
               if ( ! empty( $message ) ) {
                   krsort( $message ); // Sort messages.
+
+                  //echo "<pre>"; print_r( $message ); echo "</pre>"; die();
                   
                   // Grab all plugin names.
                   foreach ( $message as $type => $plugin_groups ) {
@@ -742,7 +744,7 @@ namespace UsabilityDynamics\WP {
                       $imploded    = empty( $plugin_groups ) ? '<em>' . $last_plugin . '</em>' : '<em>' . ( implode( ', ', $plugin_groups ) . '</em> and <em>' . $last_plugin . '</em>' );
                       
                       $prepared['messages'][] = array(
-                        'type' => ( in_array( $type, $this->error_types ) && $plugin[ 'required' ] ? 'error' : 'message' ),
+                        'type' => ( in_array( $type, $this->error_types ) ? 'error' : 'message' ),
                         'value' => sprintf( translate_nooped_plural( $this->strings[$type], $count, 'tgmpa' ), $imploded, $plugin[ '_referrer_name' ], $count ),
                       );
                       
@@ -767,7 +769,6 @@ namespace UsabilityDynamics\WP {
                     ) ),
                   );
               }
-              
               return $prepared;
           }
           
@@ -800,26 +801,12 @@ namespace UsabilityDynamics\WP {
             if ( ! isset( $plugin['slug'] ) || ! isset( $plugin['name'] ) ) {
               return;
             }
-            if( isset( $this->plugins[ $plugin[ 'slug' ] ] ) ) {
-              $_plugin = $this->plugins[ $plugin[ 'slug' ] ];
-              //** Version must be set the highest to prevent issues. */
-              if( !empty( $_plugin[ 'version' ] ) && !empty( $plugin[ 'version' ] ) ) {
-                $version = version_compare( $_plugin[ 'version' ], $plugin[ 'version' ], '<' ) ? $plugin[ 'version' ] : $_plugin[ 'version' ];
-              } else {
-                $version = !empty( $plugin[ 'version' ] ) ? $plugin[ 'version' ] : ( !empty( $_plugin[ 'version' ] ) ? $_plugin[ 'version' ] : false );
+            foreach ( $this->plugins as $registered_plugin ) {
+              if ( $plugin['slug'] == $registered_plugin['slug'] ) {
+                return;
               }
-              if( !empty( $version ) ) {
-                $this->plugins[ $plugin[ 'slug' ] ][ 'version' ] = $version;
-              }
-              //** Parent plugin must be set as required if any child plugin requires it. */
-              $this->plugins[ $plugin[ 'slug' ] ][ 'required' ] = $_plugin[ 'required' ] == true ? $_plugin[ 'required' ] : $plugin[ 'required' ];
-            } else {
-              $_plugin = $plugin;
-              unset( $_plugin[ '_referrer' ] );
-              unset( $_plugin[ '_referrer_name' ] );
-              $this->plugins[ $plugin[ 'slug' ] ] = $_plugin;
             }
-            $this->referrers[] = $plugin;
+            $this->plugins[] = $plugin;
           }
 
           /**
@@ -946,7 +933,7 @@ namespace UsabilityDynamics\WP {
            *
            * @return boolean True when on the TGMPA page, false otherwise.
            */
-          public function is_tgmpa_page() {
+          protected function is_tgmpa_page() {
 
               if ( isset( $_GET['page'] ) && $this->menu === $_GET['page'] ) {
                   return true;
