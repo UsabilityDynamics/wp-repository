@@ -1,13 +1,10 @@
 {
   "name": "usabilitydynamics/wp-repository",
-  "version": "0.2.0",
-  "type": "plugin",
+  "type": "wordpress-plugin",
+  "description": "WP Repository plugin.",
   "minimum-stability": "dev",
   "homepage": "https://usabilitydynamics.com",
-  "author": {
-    "name": "UsabilityDynamics, Inc.",
-    "url": "https://usabilitydynamics.com"
-  },
+  "license": "MIT",
   "repositories": [
     {
       "type": "composer",
@@ -18,20 +15,17 @@
       "url":"http://wpackagist.org"
     }
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/usabilitydynamics/wp-repository.git"
-  },
   "require": {
     "php": ">=5.3",
-    "usabilitydynamics/composer-github-updater": "master",
-    "usabilitydynamics/lib-wp-bootstrap": "master",
-    "usabilitydynamics/lib-ui": "master",
-    "usabilitydynamics/lib-settings": "master"
+    "usabilitydynamics/lib-wp-bootstrap": "~1.0.1",
+    "usabilitydynamics/lib-ui": "~0.2",
+    "usabilitydynamics/lib-settings": "~0.2.2"
   },
-  "require-dev": {
+  "require-dev": {},
+  "require-disabled": {
     "usabilitydynamics/lib-wp-phpunit": "master",
-    "codeclimate/php-test-reporter": "dev-master"
+    "codeclimate/php-test-reporter": "dev-master",
+    "usabilitydynamics/composer-github-updater": "master"
   },
   "autoload": {
     "classmap": [ "lib/classes" ]
