@@ -84,17 +84,12 @@ namespace UsabilityDynamics\WP {
 
         $this->boot();
       }
-
-	    /**
-	     * Returns absolute DIR or URL path
-	     *
-	     * @since 1.0.2
-	     *
-	     * @param $short_path
-	     * @param string $type
-	     *
-	     * @return bool|string
-	     */
+      
+      /**
+       * Returns absolute DIR or URL path
+       *
+       * @since 1.0.2
+       */
       public function path( $short_path, $type = 'url' ) {
         switch( $type ) {
           case 'url':

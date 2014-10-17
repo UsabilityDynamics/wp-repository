@@ -1,39 +1,44 @@
 [
     {
-        "name": "composer/installers",
-        "version": "v1.0.18",
-        "version_normalized": "1.0.18.0",
+        "name": "symfony/event-dispatcher",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Symfony/Component/EventDispatcher",
         "source": {
             "type": "git",
-            "url": "https://github.com/composer/installers.git",
-            "reference": "74fb0a7a1a23696d9c8cc2fba5903f6711cdd067"
+            "url": "https://github.com/symfony/EventDispatcher.git",
+            "reference": "bf53697836343c9bc5663649f5f094ede73c2d5c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/composer/installers/zipball/74fb0a7a1a23696d9c8cc2fba5903f6711cdd067",
-            "reference": "74fb0a7a1a23696d9c8cc2fba5903f6711cdd067",
+            "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/bf53697836343c9bc5663649f5f094ede73c2d5c",
+            "reference": "bf53697836343c9bc5663649f5f094ede73c2d5c",
             "shasum": ""
         },
-        "replace": {
-            "roundcube/plugin-installer": "*",
-            "shama/baton": "*"
+        "require": {
+            "php": ">=5.3.3"
         },
         "require-dev": {
-            "composer/composer": "1.0.*@dev",
-            "phpunit/phpunit": "4.1.*"
+            "psr/log": "~1.0",
+            "symfony/config": "~2.0",
+            "symfony/dependency-injection": "~2.0",
+            "symfony/stopwatch": "~2.2"
         },
-        "time": "2014-08-18 20:00:12",
-        "type": "composer-installer",
+        "suggest": {
+            "symfony/dependency-injection": "",
+            "symfony/http-kernel": ""
+        },
+        "time": "2014-09-22 11:59:59",
+        "type": "library",
         "extra": {
-            "class": "Composer\\Installers\\Installer",
             "branch-alias": {
-                "dev-master": "1.0-dev"
+                "dev-master": "2.6-dev"
             }
         },
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
             "psr-0": {
-                "Composer\\Installers\\": "src/"
+                "Symfony\\Component\\EventDispatcher\\": ""
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -42,67 +47,207 @@
         ],
         "authors": [
             {
-                "name": "Kyle Robinson Young",
-                "email": "kyle@dontkry.com",
-                "homepage": "https://github.com/shama"
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            },
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
             }
         ],
-        "description": "A multi-framework Composer library installer",
-        "homepage": "http://composer.github.com/installers/",
-        "keywords": [
-            "Craft",
-            "Dolibarr",
-            "Hurad",
-            "MODX Evo",
-            "OXID",
-            "WolfCMS",
-            "agl",
-            "annotatecms",
-            "bitrix",
-            "cakephp",
-            "chef",
-            "codeigniter",
-            "concrete5",
-            "croogo",
-            "drupal",
-            "elgg",
-            "fuelphp",
-            "installer",
-            "joomla",
-            "kohana",
-            "laravel",
-            "lithium",
-            "magento",
-            "mako",
-            "mediawiki",
-            "modulework",
-            "moodle",
-            "phpbb",
-            "piwik",
-            "ppi",
-            "puppet",
-            "roundcube",
-            "shopware",
-            "silverstripe",
-            "symfony",
-            "typo3",
-            "wordpress",
-            "zend",
-            "zikula"
-        ]
+        "description": "Symfony EventDispatcher Component",
+        "homepage": "http://symfony.com"
     },
     {
-        "name": "usabilitydynamics/lib-utility",
-        "version": "0.3.2",
-        "version_normalized": "0.3.2.0",
+        "name": "guzzle/guzzle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
-            "url": "git@github.com:UsabilityDynamics/lib-utility",
-            "reference": "0.3.2"
+            "url": "https://github.com/guzzle/guzzle3.git",
+            "reference": "d27346b6c8cb6a42092e763f8a2f674dfc560956"
         },
         "dist": {
             "type": "zip",
-            "url": "https://github.com/UsabilityDynamics/lib-utility/archive/0.3.2.zip",
+            "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/d27346b6c8cb6a42092e763f8a2f674dfc560956",
+            "reference": "d27346b6c8cb6a42092e763f8a2f674dfc560956",
+            "shasum": ""
+        },
+        "require": {
+            "ext-curl": "*",
+            "php": ">=5.3.3",
+            "symfony/event-dispatcher": "~2.1"
+        },
+        "replace": {
+            "guzzle/batch": "self.version",
+            "guzzle/cache": "self.version",
+            "guzzle/common": "self.version",
+            "guzzle/http": "self.version",
+            "guzzle/inflection": "self.version",
+            "guzzle/iterator": "self.version",
+            "guzzle/log": "self.version",
+            "guzzle/parser": "self.version",
+            "guzzle/plugin": "self.version",
+            "guzzle/plugin-async": "self.version",
+            "guzzle/plugin-backoff": "self.version",
+            "guzzle/plugin-cache": "self.version",
+            "guzzle/plugin-cookie": "self.version",
+            "guzzle/plugin-curlauth": "self.version",
+            "guzzle/plugin-error-response": "self.version",
+            "guzzle/plugin-history": "self.version",
+            "guzzle/plugin-log": "self.version",
+            "guzzle/plugin-md5": "self.version",
+            "guzzle/plugin-mock": "self.version",
+            "guzzle/plugin-oauth": "self.version",
+            "guzzle/service": "self.version",
+            "guzzle/stream": "self.version"
+        },
+        "require-dev": {
+            "doctrine/cache": "~1.3",
+            "monolog/monolog": "~1.0",
+            "phpunit/phpunit": "3.7.*",
+            "psr/log": "~1.0",
+            "symfony/class-loader": "~2.1",
+            "zendframework/zend-cache": "2.*,<2.3",
+            "zendframework/zend-log": "2.*,<2.3"
+        },
+        "time": "2014-09-16 21:19:27",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.9-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Guzzle": "src/",
+                "Guzzle\\Tests": "tests/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
+            },
+            {
+                "name": "Guzzle Community",
+                "homepage": "https://github.com/guzzle/guzzle/contributors"
+            }
+        ],
+        "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
+        "homepage": "http://guzzlephp.org/",
+        "keywords": [
+            "client",
+            "curl",
+            "framework",
+            "http",
+            "http client",
+            "rest",
+            "web service"
+        ]
+    },
+    {
+        "name": "knplabs/github-api",
+        "version": "1.2.6",
+        "version_normalized": "1.2.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/KnpLabs/php-github-api.git",
+            "reference": "6ee8ad85e4d4a82e8ab92ac76fd14671dbba5158"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/6ee8ad85e4d4a82e8ab92ac76fd14671dbba5158",
+            "reference": "6ee8ad85e4d4a82e8ab92ac76fd14671dbba5158",
+            "shasum": ""
+        },
+        "require": {
+            "ext-curl": "*",
+            "guzzle/guzzle": "~3.7",
+            "php": ">=5.3.2"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0"
+        },
+        "suggest": {
+            "knplabs/gaufrette": "Needed for optional Gaufrette cache"
+        },
+        "time": "2014-07-01 12:09:42",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.3.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Github\\": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Thibault Duplessis",
+                "email": "thibault.duplessis@gmail.com",
+                "homepage": "http://ornicar.github.com"
+            },
+            {
+                "name": "KnpLabs Team",
+                "homepage": "http://knplabs.com"
+            }
+        ],
+        "description": "GitHub API v3 client",
+        "homepage": "https://github.com/KnpLabs/php-github-api",
+        "keywords": [
+            "api",
+            "gh",
+            "gist",
+            "github"
+        ]
+    },
+    {
+        "name": "usabilitydynamics/composer-github-updater",
+        "version": "master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "git@github.com:UsabilityDynamics/composer-github-updater",
+            "reference": "master"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/UsabilityDynamics/composer-github-updater/archive/master.zip",
+            "reference": null,
+            "shasum": null
+        },
+        "require": {
+            "knplabs/github-api": "1.2.6"
+        },
+        "type": "library",
+        "installation-source": "source"
+    },
+    {
+        "name": "usabilitydynamics/lib-utility",
+        "version": "master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "git@github.com:UsabilityDynamics/lib-utility",
+            "reference": "master"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/usabilitydynamics/lib-utility/archive/master.zip",
             "reference": null,
             "shasum": null
         },
@@ -119,62 +264,34 @@
                 ]
             }
         },
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
             "classmap": [
                 "lib"
             ]
-        },
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Andy Potanin",
-                "email": "andy.potanin@usabilitydynamics.com",
-                "homepage": "http://usabilitydynamics.com",
-                "role": "Developer"
-            },
-            {
-                "name": "Maxim Peshkov",
-                "email": "maxim.peshkov@usabilitydynamics.com",
-                "homepage": "http://usabilitydynamics.com",
-                "role": "Developer"
-            },
-            {
-                "name": "Anton Korotkov",
-                "email": "anton.korotkov@usabilitydynamics.com",
-                "homepage": "http://usabilitydynamics.com",
-                "role": "Developer"
-            }
-        ],
-        "keywords": [
-            "job",
-            "process",
-            "utility"
-        ]
+        }
     },
     {
         "name": "usabilitydynamics/lib-wp-bootstrap",
-        "version": "1.0.2",
-        "version_normalized": "1.0.2.0",
+        "version": "master",
+        "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "git@github.com:UsabilityDynamics/lib-wp-bootstrap",
-            "reference": "1.0.2"
+            "reference": "master"
         },
         "dist": {
             "type": "zip",
-            "url": "https://github.com/UsabilityDynamics/lib-wp-bootstrap/archive/1.0.2.zip",
+            "url": "https://github.com/UsabilityDynamics/lib-wp-bootstrap/archive/master.zip",
             "reference": null,
             "shasum": null
         },
         "require": {
             "php": ">=5.3",
-            "usabilitydynamics/lib-utility": "~0.3"
+            "usabilitydynamics/lib-utility": "master"
         },
         "type": "library",
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
             "classmap": [
                 "lib/classes"
@@ -190,181 +307,30 @@
         ]
     },
     {
-        "name": "justinrainbow/json-schema",
-        "version": "1.1.0",
-        "version_normalized": "1.1.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/justinrainbow/json-schema.git",
-            "reference": "05ff6d8d79fe3ad190b0663d80d3f9deee79416c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/05ff6d8d79fe3ad190b0663d80d3f9deee79416c",
-            "reference": "05ff6d8d79fe3ad190b0663d80d3f9deee79416c",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "time": "2012-01-03 00:33:17",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "JsonSchema": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "NewBSD"
-        ],
-        "authors": [
-            {
-                "name": "Igor Wiedler",
-                "email": "igor@wiedler.ch",
-                "homepage": "http://wiedler.ch/igor/"
-            },
-            {
-                "name": "Bruno Prieto Reis",
-                "email": "bruno.p.reis@gmail.com"
-            },
-            {
-                "name": "Justin Rainbow",
-                "email": "justin.rainbow@gmail.com"
-            },
-            {
-                "name": "Robert Schönthal",
-                "email": "robert.schoenthal@gmail.com",
-                "homepage": "http://digitalkaoz.net"
-            }
-        ],
-        "description": "A library to validate a json schema.",
-        "homepage": "https://github.com/justinrainbow/json-schema",
-        "keywords": [
-            "json",
-            "schema"
-        ]
-    },
-    {
-        "name": "usabilitydynamics/lib-settings",
-        "version": "0.2.2",
-        "version_normalized": "0.2.2.0",
-        "source": {
-            "type": "git",
-            "url": "git@github.com:UsabilityDynamics/lib-settings",
-            "reference": "0.2.2"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/UsabilityDynamics/lib-settings/archive/0.2.2.zip",
-            "reference": null,
-            "shasum": null
-        },
-        "require": {
-            "justinrainbow/json-schema": "1.1.*",
-            "usabilitydynamics/lib-utility": "*"
-        },
-        "type": "library",
-        "extra": {
-            "component": {
-                "scripts": [
-                    "static/scripts/settings.js"
-                ],
-                "templates": [
-                    "static/views/new-installation.xhtml"
-                ],
-                "files": [
-                    "static/schemas/settings.json"
-                ]
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "classmap": [
-                "lib"
-            ]
-        },
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Andy Potanin",
-                "email": "andy.potanin@usabilitydynamics.com",
-                "homepage": "http://usabilitydynamics.com",
-                "role": "Developer"
-            },
-            {
-                "name": "Maxim Peshkov",
-                "email": "maxim.peshkov@usabilitydynamics.com",
-                "homepage": "http://usabilitydynamics.com",
-                "role": "Developer"
-            },
-            {
-                "name": "Anton Korotkov",
-                "email": "anton.korotkov@usabilitydynamics.com",
-                "homepage": "http://usabilitydynamics.com",
-                "role": "Developer"
-            }
-        ],
-        "homepage": "http://github.com/usabilitydynamics/lib-settings",
-        "keywords": [
-            "settings"
-        ]
-    },
-    {
-        "name": "udx/ace",
+        "name": "usabilitydynamics/lib-ui",
         "version": "master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
-            "url": "https://github.com/ajaxorg/ace.git",
+            "url": "git@github.com:UsabilityDynamics/lib-ui",
             "reference": "master"
         },
         "dist": {
             "type": "zip",
-            "url": "https://github.com/ajaxorg/ace/archive/master.zip",
-            "reference": null,
-            "shasum": null
-        },
-        "type": "component",
-        "extra": {
-            "component": {
-                "scripts": [
-                    "src-noconflict/*.*"
-                ],
-                "files": [
-                    "src-noconflict/snippets/*.*"
-                ]
-            }
-        },
-        "installation-source": "dist"
-    },
-    {
-        "name": "usabilitydynamics/lib-ui",
-        "version": "0.2.1",
-        "version_normalized": "0.2.1.0",
-        "source": {
-            "type": "git",
-            "url": "git@github.com:UsabilityDynamics/lib-ui",
-            "reference": "0.2.0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/UsabilityDynamics/lib-ui/archive/0.2.0.zip",
+            "url": "https://github.com/usabilitydynamics/lib-ui/archive/master.zip",
             "reference": null,
             "shasum": null
         },
         "require": {
-            "udx/ace": "*",
-            "usabilitydynamics/lib-utility": "*"
+            "usabilitydynamics/lib-utility": "master"
         },
         "type": "library",
         "extra": {
             "component": {
                 "scripts": [
-                    "scripts/ui.js"
+                    "scripts/ui.js",
+                    "scripts/ui.markdown.js",
+                    "scripts/ui.jquery-tabs.js"
                 ],
                 "styles": [
                     "styles/ui.css",
@@ -372,38 +338,50 @@
                 ]
             }
         },
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
             "classmap": [
                 "lib"
             ]
+        }
+    },
+    {
+        "name": "usabilitydynamics/lib-settings",
+        "version": "master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "git@github.com:UsabilityDynamics/lib-settings",
+            "reference": "master"
         },
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Andy Potanin",
-                "email": "andy.potanin@usabilitydynamics.com",
-                "homepage": "http://usabilitydynamics.com",
-                "role": "Developer"
-            },
-            {
-                "name": "Maxim Peshkov",
-                "email": "maxim.peshkov@usabilitydynamics.com",
-                "homepage": "http://usabilitydynamics.com",
-                "role": "Developer"
-            },
-            {
-                "name": "Anton Korotkov",
-                "email": "anton.korotkov@usabilitydynamics.com",
-                "homepage": "http://usabilitydynamics.com",
-                "role": "Developer"
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/usabilitydynamics/lib-settings/archive/master.zip",
+            "reference": null,
+            "shasum": null
+        },
+        "require": {
+            "usabilitydynamics/lib-utility": "*"
+        },
+        "require-dev": {
+            "justinrainbow/json-schema": "1.1.*"
+        },
+        "type": "library",
+        "extra": {
+            "component": {
+                "scripts": [
+                    "scripts/settings.js"
+                ],
+                "templates": [
+                    "views/new-installation.xhtml"
+                ]
             }
-        ],
-        "homepage": "http://github.com/usabilitydynamics/lib-ui",
-        "keywords": [
-            "ui"
-        ]
+        },
+        "installation-source": "source",
+        "autoload": {
+            "classmap": [
+                "lib"
+            ]
+        }
     }
 ]

@@ -28,4 +28,5 @@ return array(
     'UsabilityDynamics\\WP\\TGM_Bulk_Installer' => $vendorDir . '/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php',
     'UsabilityDynamics\\WP\\TGM_Bulk_Installer_Skin' => $vendorDir . '/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php',
     'UsabilityDynamics\\WP\\TGM_Plugin_Activation' => $vendorDir . '/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php',
+    'UsabilityDynamics\\Composer\\Github_Updater' => $vendorDir . '/usabilitydynamics/composer-github-updater/lib/classes/class-github-updater.php',
 );

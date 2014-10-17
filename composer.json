@@ -20,12 +20,12 @@
     "composer/installers": "v1.0.18",
     "usabilitydynamics/lib-wp-bootstrap": "~1.0.2",
     "usabilitydynamics/lib-ui": ">=0.2.1",
-    "usabilitydynamics/lib-settings": "~0.2.2"
+    "usabilitydynamics/lib-settings": "~0.2.2",
+    "usabilitydynamics/composer-github-updater": "master"
   },
   "require-dev": {
     "usabilitydynamics/lib-wp-phpunit": "master",
-    "codeclimate/php-test-reporter": "dev-master",
-    "usabilitydynamics/composer-github-updater": "master"
+    "codeclimate/php-test-reporter": "dev-master"
   },
   "autoload": {
     "classmap": [ "lib/classes" ]
