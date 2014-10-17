@@ -196,15 +196,13 @@ namespace UsabilityDynamics\WPR {
       public function admin_enqueue_scripts() {
         $github_access_token = $this->get( 'github_access_token' );
         $organizations = $this->get( 'organizations' );
-        if( !empty( $github_access_token ) && !empty( $organizations ) ) {
-          wp_enqueue_script( 'wp-repository-settings', $this->path( 'static/scripts/admin.settings.js' ), array( 'jquery' ) );
-          wp_localize_script( 'wp-repository-settings', '_ud_wpr_settings', array(
-            'ajax_url' => $this->path( 'files-updater.php' ),
-            'is_defined_constant' => defined( 'WP_REPOSITORY_PATH' ) ? true : false,
-            'current_path' => $this->repository_path,
-            'default_path' => $this->default_repository_path,
-          ) );
-        }
+        wp_enqueue_script( 'wp-repository-settings', $this->path( 'static/scripts/admin.settings.js' ), array( 'jquery' ) );
+        wp_localize_script( 'wp-repository-settings', '_ud_wpr_settings', array(
+          'ajax_url' => $this->path( 'files-updater.php' ),
+          'is_defined_constant' => defined( 'WP_REPOSITORY_PATH' ) ? true : false,
+          'current_path' => $this->repository_path,
+          'default_path' => $this->default_repository_path,
+        ) );
       }
       
       /**
