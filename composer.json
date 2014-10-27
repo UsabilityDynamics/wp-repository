@@ -30,6 +30,13 @@
   "autoload": {
     "classmap": [ "lib/classes" ]
   },
+  "config": {
+    "preferred-install": "dist",
+    "github-protocols": [ "ssh" ],
+    "vendor-dir": "vendor",
+    "bin-dir": "vendor/bin",
+    "optimize-autoloader": true
+  },
   "extra": {
     "settings": {
       "defaults": {

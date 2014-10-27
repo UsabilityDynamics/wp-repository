@@ -2,7 +2,7 @@
   "name": "wp-repository",
   "title": "WP-Repository",
   "description": "Custom Composer Repository for Wordpress",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "homepage": "https://usabilitydynamics.com",
   "author": {
     "name": "UsabilityDynamics, Inc.",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "wp_repository"
+    "url": "git@github.com:wpUsabilityDynamics/wp-repository.git"
   },
   "engines": {
     "node": ">= 0.10.0"
