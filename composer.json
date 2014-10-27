@@ -1,0 +1,88 @@
+{
+  "name": "usabilitydynamics/wp-repository",
+  "type": "wordpress-plugin",
+  "description": "WP Repository plugin.",
+  "minimum-stability": "dev",
+  "homepage": "https://usabilitydynamics.com",
+  "license": "MIT",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://repository.usabilitydynamics.com"
+    },
+    {
+      "type":"composer",
+      "url":"http://wpackagist.org"
+    }
+  ],
+  "require": {
+    "php": ">=5.3",
+    "composer/installers": "v1.0.18",
+    "usabilitydynamics/lib-wp-bootstrap": "~1.0.2",
+    "usabilitydynamics/lib-ui": ">=0.2.1",
+    "usabilitydynamics/lib-settings": "~0.2.2",
+    "usabilitydynamics/composer-github-updater": "master"
+  },
+  "require-dev": {
+    "usabilitydynamics/lib-wp-phpunit": "master",
+    "codeclimate/php-test-reporter": "dev-master"
+  },
+  "autoload": {
+    "classmap": [ "lib/classes" ]
+  },
+  "extra": {
+    "settings": {
+      "defaults": {
+        "repository_path": "",
+        "github_access_token": "",
+        "organizations": ""
+      },
+      "ui": {
+        "configuration": {
+          "secondary_menu": {
+            "parent_slug": "tools.php",
+            "page_title": "Composer Repository Manager",
+            "menu_title": "Composer Repository",
+            "menu_slug": "composer_rep_settings"
+          }
+        },
+        "menu": {
+          "settings": {
+            "id": "settings",
+            "name": "Settings"
+          }
+        },
+        "sections": {
+          "general": {
+            "id": "general",
+            "name": "General",
+            "menu": "settings"
+          },
+          "github_api": {
+            "id": "github_api",
+            "name": "Github API",
+            "menu": "settings"
+          }
+        },
+        "fields": [
+          {
+            "id": "repository_path",
+            "name": "Path to Repository Files",
+            "section": "general"
+          },
+          {
+            "id": "github_access_token",
+            "name": "Access Token",
+            "section": "github_api"
+          },
+          {
+            "id": "organizations",
+            "name": "Organizations",
+            "section": "github_api",
+            "desc": "Organizations must be added via comma."
+          }
+        ]
+      }
+    }
+  }
+}

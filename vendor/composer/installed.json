@@ -1,0 +1,387 @@
+[
+    {
+        "name": "symfony/event-dispatcher",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Symfony/Component/EventDispatcher",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/EventDispatcher.git",
+            "reference": "bf53697836343c9bc5663649f5f094ede73c2d5c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/bf53697836343c9bc5663649f5f094ede73c2d5c",
+            "reference": "bf53697836343c9bc5663649f5f094ede73c2d5c",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "psr/log": "~1.0",
+            "symfony/config": "~2.0",
+            "symfony/dependency-injection": "~2.0",
+            "symfony/stopwatch": "~2.2"
+        },
+        "suggest": {
+            "symfony/dependency-injection": "",
+            "symfony/http-kernel": ""
+        },
+        "time": "2014-09-22 11:59:59",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.6-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\EventDispatcher\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            },
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            }
+        ],
+        "description": "Symfony EventDispatcher Component",
+        "homepage": "http://symfony.com"
+    },
+    {
+        "name": "guzzle/guzzle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/guzzle/guzzle3.git",
+            "reference": "d27346b6c8cb6a42092e763f8a2f674dfc560956"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/d27346b6c8cb6a42092e763f8a2f674dfc560956",
+            "reference": "d27346b6c8cb6a42092e763f8a2f674dfc560956",
+            "shasum": ""
+        },
+        "require": {
+            "ext-curl": "*",
+            "php": ">=5.3.3",
+            "symfony/event-dispatcher": "~2.1"
+        },
+        "replace": {
+            "guzzle/batch": "self.version",
+            "guzzle/cache": "self.version",
+            "guzzle/common": "self.version",
+            "guzzle/http": "self.version",
+            "guzzle/inflection": "self.version",
+            "guzzle/iterator": "self.version",
+            "guzzle/log": "self.version",
+            "guzzle/parser": "self.version",
+            "guzzle/plugin": "self.version",
+            "guzzle/plugin-async": "self.version",
+            "guzzle/plugin-backoff": "self.version",
+            "guzzle/plugin-cache": "self.version",
+            "guzzle/plugin-cookie": "self.version",
+            "guzzle/plugin-curlauth": "self.version",
+            "guzzle/plugin-error-response": "self.version",
+            "guzzle/plugin-history": "self.version",
+            "guzzle/plugin-log": "self.version",
+            "guzzle/plugin-md5": "self.version",
+            "guzzle/plugin-mock": "self.version",
+            "guzzle/plugin-oauth": "self.version",
+            "guzzle/service": "self.version",
+            "guzzle/stream": "self.version"
+        },
+        "require-dev": {
+            "doctrine/cache": "~1.3",
+            "monolog/monolog": "~1.0",
+            "phpunit/phpunit": "3.7.*",
+            "psr/log": "~1.0",
+            "symfony/class-loader": "~2.1",
+            "zendframework/zend-cache": "2.*,<2.3",
+            "zendframework/zend-log": "2.*,<2.3"
+        },
+        "time": "2014-09-16 21:19:27",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.9-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Guzzle": "src/",
+                "Guzzle\\Tests": "tests/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
+            },
+            {
+                "name": "Guzzle Community",
+                "homepage": "https://github.com/guzzle/guzzle/contributors"
+            }
+        ],
+        "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
+        "homepage": "http://guzzlephp.org/",
+        "keywords": [
+            "client",
+            "curl",
+            "framework",
+            "http",
+            "http client",
+            "rest",
+            "web service"
+        ]
+    },
+    {
+        "name": "knplabs/github-api",
+        "version": "1.2.6",
+        "version_normalized": "1.2.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/KnpLabs/php-github-api.git",
+            "reference": "6ee8ad85e4d4a82e8ab92ac76fd14671dbba5158"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/6ee8ad85e4d4a82e8ab92ac76fd14671dbba5158",
+            "reference": "6ee8ad85e4d4a82e8ab92ac76fd14671dbba5158",
+            "shasum": ""
+        },
+        "require": {
+            "ext-curl": "*",
+            "guzzle/guzzle": "~3.7",
+            "php": ">=5.3.2"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0"
+        },
+        "suggest": {
+            "knplabs/gaufrette": "Needed for optional Gaufrette cache"
+        },
+        "time": "2014-07-01 12:09:42",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.3.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Github\\": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Thibault Duplessis",
+                "email": "thibault.duplessis@gmail.com",
+                "homepage": "http://ornicar.github.com"
+            },
+            {
+                "name": "KnpLabs Team",
+                "homepage": "http://knplabs.com"
+            }
+        ],
+        "description": "GitHub API v3 client",
+        "homepage": "https://github.com/KnpLabs/php-github-api",
+        "keywords": [
+            "api",
+            "gh",
+            "gist",
+            "github"
+        ]
+    },
+    {
+        "name": "usabilitydynamics/composer-github-updater",
+        "version": "master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "git@github.com:UsabilityDynamics/composer-github-updater",
+            "reference": "master"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/UsabilityDynamics/composer-github-updater/archive/master.zip",
+            "reference": null,
+            "shasum": null
+        },
+        "require": {
+            "knplabs/github-api": "1.2.6"
+        },
+        "type": "library",
+        "installation-source": "source"
+    },
+    {
+        "name": "usabilitydynamics/lib-utility",
+        "version": "master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "git@github.com:UsabilityDynamics/lib-utility",
+            "reference": "master"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/usabilitydynamics/lib-utility/archive/master.zip",
+            "reference": null,
+            "shasum": null
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.1.*"
+        },
+        "type": "library",
+        "extra": {
+            "installer-name": "lib-utility",
+            "component": {
+                "name": "utility",
+                "scripts": [
+                    "scripts/*.js"
+                ]
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "classmap": [
+                "lib"
+            ]
+        }
+    },
+    {
+        "name": "usabilitydynamics/lib-wp-bootstrap",
+        "version": "master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "git@github.com:UsabilityDynamics/lib-wp-bootstrap",
+            "reference": "master"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/UsabilityDynamics/lib-wp-bootstrap/archive/master.zip",
+            "reference": null,
+            "shasum": null
+        },
+        "require": {
+            "php": ">=5.3",
+            "usabilitydynamics/lib-utility": "master"
+        },
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "classmap": [
+                "lib/classes"
+            ]
+        },
+        "license": [
+            "GPLv2"
+        ],
+        "description": "Wordpress bootstrap library created by UsabilityDynamics",
+        "homepage": "https://github.com/UsabilityDynamics/lib-wp-bootstrap",
+        "keywords": [
+            "wordpress"
+        ]
+    },
+    {
+        "name": "usabilitydynamics/lib-ui",
+        "version": "master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "git@github.com:UsabilityDynamics/lib-ui",
+            "reference": "master"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/usabilitydynamics/lib-ui/archive/master.zip",
+            "reference": null,
+            "shasum": null
+        },
+        "require": {
+            "usabilitydynamics/lib-utility": "master"
+        },
+        "type": "library",
+        "extra": {
+            "component": {
+                "scripts": [
+                    "scripts/ui.js",
+                    "scripts/ui.markdown.js",
+                    "scripts/ui.jquery-tabs.js"
+                ],
+                "styles": [
+                    "styles/ui.css",
+                    "styles/ui.less"
+                ]
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "classmap": [
+                "lib"
+            ]
+        }
+    },
+    {
+        "name": "usabilitydynamics/lib-settings",
+        "version": "master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "git@github.com:UsabilityDynamics/lib-settings",
+            "reference": "master"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/usabilitydynamics/lib-settings/archive/master.zip",
+            "reference": null,
+            "shasum": null
+        },
+        "require": {
+            "usabilitydynamics/lib-utility": "*"
+        },
+        "require-dev": {
+            "justinrainbow/json-schema": "1.1.*"
+        },
+        "type": "library",
+        "extra": {
+            "component": {
+                "scripts": [
+                    "scripts/settings.js"
+                ],
+                "templates": [
+                    "views/new-installation.xhtml"
+                ]
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "classmap": [
+                "lib"
+            ]
+        }
+    }
+]
