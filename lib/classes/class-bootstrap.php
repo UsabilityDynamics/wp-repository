@@ -106,7 +106,7 @@ namespace UsabilityDynamics\WPR {
         
         $url_path = str_ireplace( wp_normalize_path( ABSPATH ), '', wp_normalize_path( $path ) );
         $url_path = '/' . ltrim( $url_path, '/\\' );
-        
+
         $su = site_url();
         $hu = home_url();
         if( $hu != $su && strlen( $su ) > strlen( $hu ) ) {
@@ -116,8 +116,10 @@ namespace UsabilityDynamics\WPR {
         }
         
         if( !empty( $diff ) ) {
-          $url_path = '/' . $diff . $url_path;
+          $url_path = $diff . '/' . ltrim( $url_path, '/\\' );
         }
+        
+        $url_path = ltrim( $url_path, '/\\' );
         
         foreach ( glob( $path . "*.json" ) as $filename ) {
           $_list[ $url_path . basename( $filename ) ] = array(
