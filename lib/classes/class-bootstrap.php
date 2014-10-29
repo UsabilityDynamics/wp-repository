@@ -16,7 +16,6 @@ namespace UsabilityDynamics\WPR {
        * @protected
        * @static
        * @property $instance
-       * @type UsabilityDynamics\WPR\Bootstrap object
        */
       protected static $instance = null;
       
@@ -161,7 +160,7 @@ namespace UsabilityDynamics\WPR {
       /**
        *
        */
-      public function parse_ui_field( $field ) {
+      public function parse_ui_field( $field = array() ) {
         if( $field[ 'id' ] == 'repository_path' ) {
           $field[ 'desc' ] = '';
           if( empty( $this->repository_path ) ) {
