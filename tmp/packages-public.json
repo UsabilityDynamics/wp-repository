@@ -1,0 +1,36 @@
+{
+  "ok": true,
+  "public": true,
+  "includes": {
+    "packages/discodonniepresents-github.json": {
+      "sha1": "1116cf0240dd42cb84e3197e171afe55ac548f06",
+      "updated": 1413987754,
+      "description": "Updated 7 days."
+    },
+    "packages/symbolic.json": {
+      "sha1": "f00e753e4c373d9b8bdffde126a30701d8fae525",
+      "updated": 1414390986,
+      "description": "Updated 2 days."
+    },
+    "packages/udx-github.json": {
+      "sha1": "da1bdf00b3f4523d9e4644f3460208052d959248",
+      "updated": 1413934853,
+      "description": "Updated 1 week."
+    },
+    "packages/usabilitydynamics-github.json": {
+      "sha1": "d178f3c8a377daba59f078e75c75a859e476cdd9",
+      "updated": 1414548797,
+      "description": "Updated 1 hour."
+    },
+    "packages/wp-property-github.json": {
+      "sha1": "482334eea6c815789e8a24afb766d8a262e86025",
+      "updated": 1414389938,
+      "description": "Updated 2 days."
+    },
+    "packages/wpcloud-github.json": {
+      "sha1": "253afb98746b34becb727b6980737d4275bcc3df",
+      "updated": 1414004865,
+      "description": "Updated 6 days."
+    }
+  }
+}

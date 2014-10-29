@@ -1,7 +1,3 @@
-### WP-Repository Plugin
-
-Custom Composer Repository for Wordpress
-
 ***
 [![Issues - Bug](https://badge.waffle.io/usabilitydynamics/wp-repository.png?label=bug&title=Bugs)](http://waffle.io/usabilitydynamics/wp-repository)
 [![Issues - Backlog](https://badge.waffle.io/usabilitydynamics/wp-repository.png?label=backlog&title=Backlog)](http://waffle.io/usabilitydynamics/wp-repository/)
@@ -13,3 +9,11 @@ Custom Composer Repository for Wordpress
 [![Packagist Vesion](http://img.shields.io/packagist/v/usabilitydynamics/wp-repository.svg)](https://packagist.org/packages/usabilitydynamics/wp-repository)
 [![CircleCI](https://circleci.com/gh/usabilitydynamics/wp-repository.png)](https://circleci.com/gh/usabilitydynamics/wp-repository)
 ***
+
+### Filters
+
+* wpr::includes_url
+* wpr::single_release
+* wpr::single_package
+* wpr::main_package
+* wpr::installer_name

@@ -89,7 +89,7 @@ namespace UsabilityDynamics\WPR {
           $this->render_main_package();
         }
       }
-      
+
       /**
        *
        * @return array
@@ -102,9 +102,9 @@ namespace UsabilityDynamics\WPR {
         }
         
         $path = trailingslashit( $this->repository_path );
-        
-        $url_path = str_ireplace( wp_normalize_path( ABSPATH ), '', wp_normalize_path( $path ) );
-        $url_path = '/' . ltrim( $url_path, '/\\' );
+
+	      $url_base = str_ireplace( wp_normalize_path( ABSPATH ), '', wp_normalize_path( $path ) );
+	      $url_base = '/' . ltrim( $url_base, '/\\' );
 
         $su = site_url();
         $hu = home_url();
@@ -115,13 +115,16 @@ namespace UsabilityDynamics\WPR {
         }
         
         if( !empty( $diff ) ) {
-          $url_path = $diff . '/' . ltrim( $url_path, '/\\' );
+	        $url_base = $diff . '/' . ltrim( $url_base, '/\\' );
         }
-        
-        $url_path = ltrim( $url_path, '/\\' );
+
+        $url_base = ltrim( $url_base, '/\\' );
         
         foreach ( glob( $path . "*.json" ) as $filename ) {
-          $_list[ $url_path . basename( $filename ) ] = array(
+
+	        $full_url = apply_filters( 'wpr::includes_url', $url_base . basename( $filename ), $filename, $this );
+
+          $_list[ $full_url ] = array(
             'sha1' => sha1( filemtime( $filename ) ),
             'updated' => filemtime( $filename ),
             'description' => 'Updated ' . human_time_diff( filemtime( $filename ) ) . '.'
@@ -139,21 +142,28 @@ namespace UsabilityDynamics\WPR {
 
         nocache_headers();
 
-        //header( 'Cache-Control:no-cache' );
-        //header( 'Content-Type:application/json' );
-        //header( 'Last-Modified: ' . gmdate('D, d M Y H:i:s', time() .' GMT', true, 200 ) );
-
         if( function_exists( 'http_response_code' )) {
           http_response_code( 200 );
         } else {
           header( "HTTP/1.0 200 OK" );
         }
 
+	      $_main = (array) apply_filters( 'wpr::main_package', array(
+		      "ok" => true,
+		      "includes" => $this->get_repository_includes()
+	      ));
+
+
+	      if( $_main[ 'packages' ] ) {
+
+		      foreach( $_main[ 'packages' ] as $name => $_package ) {
+			      $_main[ 'packages' ][ $name ] = \UsabilityDynamics\WPR::parse_package( $_package, $name );
+		      }
+
+	      }
+
         // thanks WordPrsss
-        wp_send_json( array(
-          "ok" => true,
-          "includes" => $this->get_repository_includes()
-        ) );
+        wp_send_json( $_main );
 
       }
       

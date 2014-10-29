@@ -1,4 +1,3 @@
-vendor/composer/installers
 vendor/composer/installed.json
 temp
 node_modules
