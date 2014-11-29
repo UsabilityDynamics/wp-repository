@@ -10,6 +10,10 @@
 [![CircleCI](https://circleci.com/gh/usabilitydynamics/wp-repository.png)](https://circleci.com/gh/usabilitydynamics/wp-repository)
 ***
 
+### URLs
+
+* /api/repository/v1/packages.json
+
 ### Filters
 
 * wpr::includes_url
