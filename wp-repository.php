@@ -23,25 +23,29 @@
  * @return mixed
  */
 
-if (!defined('WPR_BASEURL')) {
-  define('WPR_BASEURL', '_packages');
-}
+add_action( 'plugins_loaded', function() {
 
-if (!defined('WPR_HOSTNAME')) {
-  define('WPR_HOSTNAME', 'repository.usabilitydynamics.com');
-}
+  if (!defined('WPR_BASEURL')) {
+    define('WPR_BASEURL', '_packages');
+  }
 
-if (!defined('WP_REPOSITORY_AUTH')) {
-  define('WP_REPOSITORY_AUTH', false);
-}
+  if (!defined('WPR_HOSTNAME')) {
+    define('WPR_HOSTNAME', 'repository.usabilitydynamics.com');
+  }
 
-if (!defined('WP_REPOSITORY_PATH') && defined('WP_CONTENT_DIR')) {
-  define('WP_REPOSITORY_PATH', wp_normalize_path(WP_CONTENT_DIR . '/repository'));
-}
+  if (!defined('WP_REPOSITORY_AUTH')) {
+    define('WP_REPOSITORY_AUTH', false);
+  }
 
-if (!defined('WP_REPOSITORY_LOG_PATH') && defined('WP_CONTENT_DIR')) {
-  define('WP_REPOSITORY_LOG_PATH', wp_normalize_path(WP_CONTENT_DIR));
-}
+  if (!defined('WP_REPOSITORY_PATH') && defined('WP_CONTENT_DIR')) {
+    define('WP_REPOSITORY_PATH', wp_normalize_path(WP_CONTENT_DIR . '/uploads/repository'));
+  }
+
+  if (!defined('WP_REPOSITORY_LOG_PATH') && defined('WP_CONTENT_DIR')) {
+    define('WP_REPOSITORY_LOG_PATH', wp_normalize_path(WP_CONTENT_DIR));
+  }
+
+});
 
 add_filter('wpr::single_release', function ($release) {
 
@@ -112,7 +116,7 @@ if (!function_exists('ud_get_wp_repository')) {
    * @return
    */
   function ud_get_wp_repository($key = false, $default = null) {
-    $instance = \UsabilityDynamics\WPR\Bootstrap::get_instance();
+    $instance = UsabilityDynamics\WPR\Bootstrap::get_instance();
     return $key ? $instance->get($key, $default) : $instance;
   }
 
@@ -273,7 +277,6 @@ if (ud_check_wp_repository()) {
       if ($_authorized) {
 
         add_filter('wpr::main_package', function ($main_package) {
-
           if (file_exists(__DIR__ . '/tmp/packages-private.json')) {
             $_private = json_decode(file_get_contents(__DIR__ . '/tmp/packages-private.json'));
             //$main_package['includes'] = array_merge( (array) $main_package['includes'], (array) $_private );
@@ -285,7 +288,12 @@ if (ud_check_wp_repository()) {
         });
 
       } else {
-        //wp_send_json( json_decode(file_get_contents( WP_REPOSITORY_PATH . '/packages-public.json' ) ));
+
+        add_filter('wpr::main_package', function ($main_package) {
+          $main_package['packages'] = array_merge((array)$main_package['packages'], array());
+          return $main_package;
+        });
+
       }
 
     }
