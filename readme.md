@@ -21,3 +21,30 @@
 * wpr::single_package
 * wpr::main_package
 * wpr::installer_name
+
+
+### AMQP WebHook Publishing Example
+```php
+connection = new \AMQP\Connection( 'amqp://user:pass@hostname:port/vhost',  array(
+  'insist' => false,
+  'login_method' => \AMQP\Connection::AMQP_AUTH_PLAIN,
+  'login_response' => null,
+  'locale' => 'en_US',
+  'connection_timeout' => 3,
+  'read_write_timeout' => 3,
+  'context' => null,
+  'ssl_options' => array()
+));
+
+$channel = $connection->channel();
+
+$message = new Message( 'blah blah', array(
+  'content_type' => 'application/json', 
+  'delivery_mode' => 2
+));
+
+$channel->basicPublish( $message, 'DiscoDonniePresents/www.discodonniepresents.com');
+
+$channel->close();
+$connection->close();
+```

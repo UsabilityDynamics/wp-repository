@@ -17,13 +17,14 @@
   ],
   "require": {
     "php": ">=5.3",
-    "composer/installers": "v1.0.18",
+    "composer/installers": "~1.0",
+    "zircote/amqp": "~1.0",
     "usabilitydynamics/lib-wp-bootstrap": "~1.0.2",
     "usabilitydynamics/lib-ui": ">=0.2.1",
-    "usabilitydynamics/lib-settings": "~0.2.2",
-    "usabilitydynamics/composer-github-updater": "master"
+    "usabilitydynamics/lib-settings": "~0.2.2"
   },
   "require-dev": {
+    "usabilitydynamics/composer-github-updater": "master",
     "usabilitydynamics/lib-wp-phpunit": "master",
     "codeclimate/php-test-reporter": "dev-master"
   },
