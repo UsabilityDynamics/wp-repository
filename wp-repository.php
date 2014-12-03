@@ -44,6 +44,14 @@ add_action( 'plugins_loaded', function() {
   if (!defined('WP_REPOSITORY_LOG_PATH') && defined('WP_CONTENT_DIR')) {
     define('WP_REPOSITORY_LOG_PATH', wp_normalize_path(WP_CONTENT_DIR));
   }
+  
+  if ( !defined('ACCEPTED_GIT_BRANCH') ) {
+	define('ACCEPTED_GIT_BRANCH', 'master');
+  }
+  
+  if ( !defined( 'GIT_ACCESS_TOKEN' ) ) {
+	define('GIT_ACCESS_TOKEN', '4b6cee67bfb5dd2cf27a48563cc506508827db95');
+  }
 
 });
 
