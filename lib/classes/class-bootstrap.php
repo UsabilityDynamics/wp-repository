@@ -121,6 +121,9 @@ namespace UsabilityDynamics\WPR {
 		
 		/** Get payload */
 		$payload = json_decode( stripslashes( $_REQUEST['payload'] ), 1 );
+		
+		/** Action to hook by third-party needs */
+		do_action( 'wp_repository_api_github', $payload );
   
         /** Make sure we're on the correct branch */
 		if ( $payload[ 'ref' ] != 'refs/heads/' . ACCEPTED_GIT_BRANCH ) {
@@ -144,8 +147,34 @@ namespace UsabilityDynamics\WPR {
 		/** Get tags of current repository */
 		$tags = $client->api( 'repos' )->tags( $payload['organization']['login'], $payload['repository']['name'] );
 		
+		/** Get branches */
+		$branches = $client->api( 'repos' )->branches( $payload['organization']['login'], $payload['repository']['name'] );
+		
 		/** Prepare composer */
 		$composer_files = array();
+		
+		/** Branches */
+		foreach( $branches as $branch ){
+		  /** Skip it if we've already declared the branch */
+		  if( in_array( $branch[ 'name' ], array_keys( $composer_files ) ) ){
+			continue;
+		  }
+		  if( in_array( 'dev-' . $branch[ 'name' ], array_keys( $composer_files ) ) ){
+			continue;
+		  }
+		  try{
+			$composer_file = $client->api( 'repos' )->contents()->show( $payload['organization']['login'], $payload['repository']['name'], 'composer.json', $branch[ 'commit' ][ 'sha' ] );
+		  }catch( \Exception $e ){
+			continue;
+		  }
+		  $composer_data = @json_decode( @base64_decode( $composer_file[ 'content' ] ) );
+		  /** Ok, make sure we have a valid composer file */
+		  if( is_object( $composer_data ) && isset( $composer_data->name ) ){
+			$composer_files[ ( $branch[ 'name' ] != 'master' ? 'dev-' : '' ) . $branch[ 'name' ] ] = $composer_data;
+		  }
+		}
+		
+		/** Tags */
 		foreach( $tags as $tag ){
 		  try{
 			$composer_file = $client->api( 'repos' )->contents()->show( $payload['organization']['login'], $payload['repository']['name'], 'composer.json', $tag[ 'commit' ][ 'sha' ] );
@@ -182,6 +211,10 @@ namespace UsabilityDynamics\WPR {
 		  /** Add it to the thing */
 		  $filedata->packages->{$payload['repository']['name']}->{$tag} = $composer_file;
 		}
+		
+		foreach( $filedata->packages as $name => $_package ) {
+		  $filedata->packages->{$name} = \UsabilityDynamics\WPR::parse_package( $_package, $name );
+	    }
 		
 		file_put_contents( WP_REPOSITORY_PATH . '/' . $filename, stripslashes( json_encode( $filedata ) ) );
 		

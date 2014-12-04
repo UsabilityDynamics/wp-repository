@@ -45,6 +45,10 @@ namespace UsabilityDynamics {
 			    if( isset( $release->settings ) ) {
 				    unset( $release->settings );
 			    }
+				
+				if( isset( $release->config ) ) {
+				    unset( $release->config );
+			    }
 
 			    $package->{$version} = apply_filters( 'wpr::single_release', $release );
 
