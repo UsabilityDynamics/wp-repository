@@ -1,0 +1,70 @@
+{
+  "usabilitydynamics/private-plugin": {
+    "master": {
+      "name": "usabilitydynamics/private-plugin",
+      "type": "wordpress-plugin",
+      "description": "Sample plugin.",
+      "keywords": [ "sample", "test2" ],
+      "require": {
+        "composer/installers": "~1.0"
+      },
+      "version": "master",
+      "autoload": {
+        "classmap": [ "lib" ]
+      },
+      "dist": {
+        "url": "https://api.github.com/repos/UsabilityDynamics/private-plugin/zipball/master?access_token=dfb7e688a4f52c7fd97794d8f5d0ede11666a91b",
+        "type": "zip"
+      },
+      "source": {
+        "url": "git@github.com:usabilitydynamics/usabilitydynamics/private-plugin",
+        "type": "git",
+        "reference": "master"
+      }
+    },
+    "0.2.0": {
+      "name": "usabilitydynamics/private-plugin",
+      "type": "wordpress-plugin",
+      "description": "Sample plugin.",
+      "keywords": [ "sample", "test2" ],
+      "require": {
+        "composer/installers": "~1.0"
+      },
+      "version": "0.2.0",
+      "autoload": {
+        "classmap": [ "lib" ]
+      },
+      "dist": {
+        "url": "https://api.github.com/repos/UsabilityDynamics/private-plugin/zipball/0.1.0?access_token=dfb7e688a4f52c7fd97794d8f5d0ede11666a91b",
+        "type": "zip"
+      },
+      "source": {
+        "url": "git@github.com:usabilitydynamics/usabilitydynamics/private-plugin",
+        "type": "git",
+        "reference": "0.1.0"
+      }
+    },
+    "0.1.0": {
+      "name": "usabilitydynamics/private-plugin",
+      "type": "wordpress-plugin",
+      "description": "Sample plugin.",
+      "keywords": [ "sample", "test2" ],
+      "require": {
+        "composer/installers": "~1.0"
+      },
+      "version": "0.1.0",
+      "autoload": {
+        "classmap": [ "lib" ]
+      },
+      "dist": {
+        "url": "https://api.github.com/repos/UsabilityDynamics/private-plugin/zipball/0.1.0?access_token=dfb7e688a4f52c7fd97794d8f5d0ede11666a91b",
+        "type": "zip"
+      },
+      "source": {
+        "url": "git@github.com:usabilitydynamics/usabilitydynamics/private-plugin",
+        "type": "git",
+        "reference": "0.1.0"
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@
   "name": "wp-repository",
   "title": "WP-Repository",
   "description": "Custom Composer Repository for Wordpress",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "homepage": "https://usabilitydynamics.com",
   "author": {
     "name": "UsabilityDynamics, Inc.",

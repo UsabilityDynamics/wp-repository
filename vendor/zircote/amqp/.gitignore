@@ -1,0 +1,10 @@
+composer.lock
+composer.phar
+build/api
+build/code-browser
+build/coverage
+build/logs
+build/pdepend
+vendor
+*.iml
+*.idea
