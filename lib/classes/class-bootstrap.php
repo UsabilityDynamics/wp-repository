@@ -216,7 +216,8 @@ namespace UsabilityDynamics\WPR {
 		  $filedata->packages->{$name} = \UsabilityDynamics\WPR::parse_package( $_package, $name );
 	    }
 		
-		file_put_contents( WP_REPOSITORY_PATH . '/' . $filename, stripslashes( json_encode( $filedata ) ) );
+		//file_put_contents( WP_REPOSITORY_PATH . '/' . $filename, stripslashes( json_encode( $filedata ) ) );
+		file_put_contents( WP_REPOSITORY_PATH . '/' . $filename, json_encode( $filedata ) );
 		
 		die('ok');
 	  }
