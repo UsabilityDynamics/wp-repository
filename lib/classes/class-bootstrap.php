@@ -8,7 +8,7 @@ namespace UsabilityDynamics\WPR {
 
   if( !class_exists( 'UsabilityDynamics\WPR\Bootstrap' ) ) {
 
-    final class Bootstrap extends \UsabilityDynamics\WP\Bootstrap {
+    final class Bootstrap extends \UsabilityDynamics\WP\Bootstrap_Plugin {
       
       /**
        * Singleton Instance Reference.
@@ -88,139 +88,139 @@ namespace UsabilityDynamics\WPR {
           $_basePath = true;
         }
 		
-        if( strpos( $_SERVER[ 'HTTP_HOST' ], 'repository' ) === 0 ) {
+        if( true || strpos( $_SERVER[ 'HTTP_HOST' ], 'repository' ) === 0 ) {
           $_subdomain = true;
         }
 		
-		if ( $_SERVER['REQUEST_URI'] === '/api/github' ) {
-		  $_packagist_emulator = true;
-		}
+        if ( true || $_SERVER['REQUEST_URI'] === '/api/github' ) {
+          $_packagist_emulator = true;
+        }
 		
         if( $_subdomain && $_basePath ) {
           $this->render_main_package();
         }
 		
-		if ( $_packagist_emulator && $_subdomain ) {
-		  $this->listen_api_github();
-		}
+        if ( $_packagist_emulator && $_subdomain ) {
+          $this->listen_api_github();
+        }
       }
 	  
-	  /**
-	   * Listener for GitHub Packagist Service
-	   * @author korotkov@ud
-	   */
-	  function listen_api_github() {
-		
-		nocache_headers();
+      /**
+       * Listener for GitHub Packagist Service
+       * @author korotkov@ud
+       */
+      public function listen_api_github() {
+
+        nocache_headers();
 
         if( function_exists( 'http_response_code' )) {
           http_response_code( 200 );
         } else {
           header( "HTTP/1.0 200 OK" );
         }
-		
-		/** Get payload */
-		$payload = json_decode( stripslashes( $_REQUEST['payload'] ), 1 );
-		
-		/** Action to hook by third-party needs */
-		do_action( 'wp_repository_api_github', $payload );
-  
-        /** Make sure we're on the correct branch */
-		if ( $payload[ 'ref' ] != 'refs/heads/' . ACCEPTED_GIT_BRANCH ) {
-		  die( 'Skip this branch' );
-		}
-		
-		if ( !class_exists( '\Github\Client' ) || !class_exists( '\Github\HttpClient\CachedHttpClient' ) ) {
-		  die( 'There is no available github client' );
-		}
-		
-		/** Init git client if exists */
-		$client = new \Github\Client(
+
+        /** Get payload */
+        $payload = json_decode( stripslashes( $_REQUEST['payload'] ), 1 );
+
+        /** Action to hook by third-party needs */
+        do_action( 'wp_repository_api_github', $payload );
+
+            /** Make sure we're on the correct branch */
+        if ( $payload[ 'ref' ] != 'refs/heads/' . ACCEPTED_GIT_BRANCH ) {
+          die( 'Skip this branch' );
+        }
+
+        if ( !class_exists( '\Github\Client' ) || !class_exists( '\Github\HttpClient\CachedHttpClient' ) ) {
+          die( 'There is no available github client' );
+        }
+
+        /** Init git client if exists */
+        $client = new \Github\Client(
           new \Github\HttpClient\CachedHttpClient( array(
             'cache_dir' => dirname( __FILE__ ) . '/../cache_dir'
           ) )
         );
-		
+
         /** And authenticate it */
         $client->authenticate( GIT_ACCESS_TOKEN, \Github\Client::AUTH_HTTP_TOKEN );
-		
-		/** Get tags of current repository */
-		$tags = $client->api( 'repos' )->tags( $payload['organization']['login'], $payload['repository']['name'] );
-		
-		/** Get branches */
-		$branches = $client->api( 'repos' )->branches( $payload['organization']['login'], $payload['repository']['name'] );
-		
-		/** Prepare composer */
-		$composer_files = array();
-		
-		/** Branches */
-		foreach( $branches as $branch ){
-		  /** Skip it if we've already declared the branch */
-		  if( in_array( $branch[ 'name' ], array_keys( $composer_files ) ) ){
-			continue;
-		  }
-		  if( in_array( 'dev-' . $branch[ 'name' ], array_keys( $composer_files ) ) ){
-			continue;
-		  }
-		  try{
-			$composer_file = $client->api( 'repos' )->contents()->show( $payload['organization']['login'], $payload['repository']['name'], 'composer.json', $branch[ 'commit' ][ 'sha' ] );
-		  }catch( \Exception $e ){
-			continue;
-		  }
-		  $composer_data = @json_decode( @base64_decode( $composer_file[ 'content' ] ) );
-		  /** Ok, make sure we have a valid composer file */
-		  if( is_object( $composer_data ) && isset( $composer_data->name ) ){
-			$composer_files[ ( $branch[ 'name' ] != 'master' ? 'dev-' : '' ) . $branch[ 'name' ] ] = $composer_data;
-		  }
-		}
-		
-		/** Tags */
-		foreach( $tags as $tag ){
-		  try{
-			$composer_file = $client->api( 'repos' )->contents()->show( $payload['organization']['login'], $payload['repository']['name'], 'composer.json', $tag[ 'commit' ][ 'sha' ] );
-		  }catch( \Exception $e ){
-			continue;
-		  }
-		  $composer_data = @json_decode( @base64_decode( $composer_file[ 'content' ] ) );
-		  
-		  /** Ok, make sure we have a valid composer file */
-		  if( is_object( $composer_data ) && isset( $composer_data->name ) ){
-			$composer_files[ $tag[ 'name' ] ] = $composer_data;
-		  }
-		}
-		
-		$filename = strtolower( $payload['organization']['login'] . '-' . $payload['repository']['name'] ) . '-github.json';
+
+        /** Get tags of current repository */
+        $tags = $client->api( 'repos' )->tags( $payload['organization']['login'], $payload['repository']['name'] );
+
+        /** Get branches */
+        $branches = $client->api( 'repos' )->branches( $payload['organization']['login'], $payload['repository']['name'] );
+
+        /** Prepare composer */
+        $composer_files = array();
+
+        /** Branches */
+        foreach( $branches as $branch ){
+          /** Skip it if we've already declared the branch */
+          if( in_array( $branch[ 'name' ], array_keys( $composer_files ) ) ){
+          continue;
+          }
+          if( in_array( 'dev-' . $branch[ 'name' ], array_keys( $composer_files ) ) ){
+          continue;
+          }
+          try{
+          $composer_file = $client->api( 'repos' )->contents()->show( $payload['organization']['login'], $payload['repository']['name'], 'composer.json', $branch[ 'commit' ][ 'sha' ] );
+          }catch( \Exception $e ){
+          continue;
+          }
+          $composer_data = @json_decode( @base64_decode( $composer_file[ 'content' ] ) );
+          /** Ok, make sure we have a valid composer file */
+          if( is_object( $composer_data ) && isset( $composer_data->name ) ){
+          $composer_files[ ( $branch[ 'name' ] != 'master' ? 'dev-' : '' ) . $branch[ 'name' ] ] = $composer_data;
+          }
+        }
+
+        /** Tags */
+        foreach( $tags as $tag ){
+          try{
+          $composer_file = $client->api( 'repos' )->contents()->show( $payload['organization']['login'], $payload['repository']['name'], 'composer.json', $tag[ 'commit' ][ 'sha' ] );
+          }catch( \Exception $e ){
+          continue;
+          }
+          $composer_data = @json_decode( @base64_decode( $composer_file[ 'content' ] ) );
+
+          /** Ok, make sure we have a valid composer file */
+          if( is_object( $composer_data ) && isset( $composer_data->name ) ){
+          $composer_files[ $tag[ 'name' ] ] = $composer_data;
+          }
+        }
+
+        $filename = strtolower( $payload['organization']['login'] . '-' . $payload['repository']['name'] ) . '-github.json';
         $filedata = new \stdClass();
         $filedata->ok = true;
         $filedata->packages = new \stdClass();
-		  
-		foreach( $composer_files as $tag => &$composer_file ){
-		  /** Overwrite the name */
-		  $composer_file->name = strtolower( $payload['organization']['login'] ) . '/' . $payload['repository']['name'];
-		  /** Overwrite the version */
-		  $composer_file->version = $tag;
-		  /** Overwrite the dist */
-		  $dist_tag = str_ireplace( 'dev-', '', $tag );
-		  $composer_file->dist = new \stdClass();
-		  $composer_file->dist->url = "https://github.com/{$payload['organization']['login']}/{$payload['repository']['name']}/archive/{$dist_tag}.zip";
-		  $composer_file->dist->type = "zip";
-		  $composer_file->source = new \stdClass();
-		  $composer_file->source->url = "git@github.com:{$payload['organization']['login']}/{$payload['repository']['name']}";
-		  $composer_file->source->type = "git";
-		  $composer_file->source->reference = $dist_tag;
-		  /** Add it to the thing */
-		  $filedata->packages->{$payload['repository']['name']}->{$tag} = $composer_file;
-		}
-		
-		foreach( $filedata->packages as $name => $_package ) {
-		  $filedata->packages->{$name} = \UsabilityDynamics\WPR::parse_package( $_package, $name );
-	    }
-		
-		//file_put_contents( WP_REPOSITORY_PATH . '/' . $filename, stripslashes( json_encode( $filedata ) ) );
-		file_put_contents( WP_REPOSITORY_PATH . '/' . $filename, json_encode( $filedata ) );
-		
-		die('ok');
-	  }
+
+        foreach( $composer_files as $tag => &$composer_file ){
+          /** Overwrite the name */
+          $composer_file->name = strtolower( $payload['organization']['login'] ) . '/' . $payload['repository']['name'];
+          /** Overwrite the version */
+          $composer_file->version = $tag;
+          /** Overwrite the dist */
+          $dist_tag = str_ireplace( 'dev-', '', $tag );
+          $composer_file->dist = new \stdClass();
+          $composer_file->dist->url = "https://github.com/{$payload['organization']['login']}/{$payload['repository']['name']}/archive/{$dist_tag}.zip";
+          $composer_file->dist->type = "zip";
+          $composer_file->source = new \stdClass();
+          $composer_file->source->url = "git@github.com:{$payload['organization']['login']}/{$payload['repository']['name']}";
+          $composer_file->source->type = "git";
+          $composer_file->source->reference = $dist_tag;
+          /** Add it to the thing */
+          $filedata->packages->{$payload['repository']['name']}->{$tag} = $composer_file;
+        }
+
+        foreach( $filedata->packages as $name => $_package ) {
+          $filedata->packages->{$name} = \UsabilityDynamics\WPR::parse_package( $_package, $name );
+        }
+
+        //file_put_contents( WP_REPOSITORY_PATH . '/' . $filename, stripslashes( json_encode( $filedata ) ) );
+        file_put_contents( WP_REPOSITORY_PATH . '/' . $filename, json_encode( $filedata ) );
+
+        die('ok');
+      }
 
       /**
        *

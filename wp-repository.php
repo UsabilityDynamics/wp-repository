@@ -23,37 +23,33 @@
  * @return mixed
  */
 
-add_action( 'plugins_loaded', function() {
+if (!defined('WPR_BASEURL')) {
+  define('WPR_BASEURL', '_packages');
+}
 
-  if (!defined('WPR_BASEURL')) {
-    define('WPR_BASEURL', '_packages');
-  }
+if (!defined('WPR_HOSTNAME')) {
+  define('WPR_HOSTNAME', 'repository.usabilitydynamics.com');
+}
 
-  if (!defined('WPR_HOSTNAME')) {
-    define('WPR_HOSTNAME', 'repository.usabilitydynamics.com');
-  }
+if (!defined('WP_REPOSITORY_AUTH')) {
+  define('WP_REPOSITORY_AUTH', false);
+}
 
-  if (!defined('WP_REPOSITORY_AUTH')) {
-    define('WP_REPOSITORY_AUTH', false);
-  }
+if (!defined('WP_REPOSITORY_PATH') && defined('WP_CONTENT_DIR')) {
+  define('WP_REPOSITORY_PATH', wp_normalize_path(WP_CONTENT_DIR . '/uploads/repository'));
+}
 
-  if (!defined('WP_REPOSITORY_PATH') && defined('WP_CONTENT_DIR')) {
-    define('WP_REPOSITORY_PATH', wp_normalize_path(WP_CONTENT_DIR . '/uploads/repository'));
-  }
+if (!defined('WP_REPOSITORY_LOG_PATH') && defined('WP_CONTENT_DIR')) {
+  define('WP_REPOSITORY_LOG_PATH', wp_normalize_path(WP_CONTENT_DIR));
+}
 
-  if (!defined('WP_REPOSITORY_LOG_PATH') && defined('WP_CONTENT_DIR')) {
-    define('WP_REPOSITORY_LOG_PATH', wp_normalize_path(WP_CONTENT_DIR));
-  }
-  
-  if ( !defined('ACCEPTED_GIT_BRANCH') ) {
-	define('ACCEPTED_GIT_BRANCH', 'master');
-  }
-  
-  if ( !defined( 'GIT_ACCESS_TOKEN' ) ) {
-	define('GIT_ACCESS_TOKEN', '4b6cee67bfb5dd2cf27a48563cc506508827db95');
-  }
+if ( !defined('ACCEPTED_GIT_BRANCH') ) {
+  define('ACCEPTED_GIT_BRANCH', 'master');
+}
 
-});
+if ( !defined( 'GIT_ACCESS_TOKEN' ) ) {
+  define('GIT_ACCESS_TOKEN', '4b6cee67bfb5dd2cf27a48563cc506508827db95');
+}
 
 add_filter('wpr::single_release', function ($release) {
 

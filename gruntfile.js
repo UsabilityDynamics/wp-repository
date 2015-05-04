@@ -155,9 +155,9 @@ module.exports = function build( grunt ) {
           stdout: true
         },
         command: [
-          "composer install --no-dev --no-interaction",
-          "find ./vendor -name .git -exec rm -rf '{}' \;"
-        ].join( ' && ' ),
+          "composer install --no-dev",
+          "find ./vendor -name .git -exec rm -rf '{}' \\;"
+        ].join( ' && ' )
       },
       /**
        * Composer Update
@@ -167,9 +167,9 @@ module.exports = function build( grunt ) {
           stdout: true
         },
         command: [
-          "composer update --no-dev --no-interaction",
-          "find ./vendor -name .git -exec rm -rf '{}' \;"
-        ].join( ' && ' ),
+          "composer update --no-dev",
+          "find ./vendor -name .git -exec rm -rf '{}' \\;"
+        ].join( ' && ' )
       }
     },
     
